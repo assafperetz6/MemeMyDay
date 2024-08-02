@@ -1,0 +1,10 @@
+.meme-editor {
+    background-color: var(--primary-2);
+}
+
+.meme-editor .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
