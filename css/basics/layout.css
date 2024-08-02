@@ -1,0 +1,9 @@
+body {
+    display: grid;
+    grid-template-columns: minmax(10px, 1fr) minmax(auto, 900px) minmax(10px, 1fr);
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+

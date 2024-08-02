@@ -1,0 +1,12 @@
+.main-header {
+    background-color: lightblue;
+}
+
+.main-header .logo {
+    margin-inline-start: 20px;
+}
+
+.main-header .main-nav {
+    align-self: center;
+    margin-inline-end: 20px;
+}
