@@ -6,10 +6,12 @@ function onInit() {
 
     resizeCanvas()
     addListeners()
+
+    renderMeme()
 }
 
 function addListeners() {
-
+    window.addEventListener('resize', resizeCanvas)
 }
 
 function resizeCanvas() {
