@@ -1,4 +1,11 @@
 .meme-editor {
+    grid-column: 2;
+    
+    display: none;
+    /* display: grid; */
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 80px minmax(500px, 1fr);
+
     background-color: var(--primary-2);
 }
 
