@@ -42,14 +42,9 @@ function getMeme(imgIdx = 0) {
     return gImgs[imgIdx]
 }
 
-function loadMeme(imgIdx) {
+function loadMeme(imgIdx, elImg) {
     const img = gImgs.find(({ id }) => id === imgIdx)
-    gMeme.elSelectedImg = img
-}
-
-function renderImg() {
-    const { elSelectedImg: img } = gMeme
-    gCtx.drawImage(img, 0, 0, img.naturalHeight, img.naturalWidth)
+    gMeme.elSelectedImg = elImg
 }
 
 function setLineTxt(txt = 'Enter Text here') {
@@ -58,5 +53,5 @@ function setLineTxt(txt = 'Enter Text here') {
     gCtx.lineWidth = 8
     
     gCtx.strokeText(txt, 100, 100)
-    gCtx.fillText(txt, 100, 100)
+    // gCtx.fillText(txt, 100, 100)
 }

@@ -16,9 +16,8 @@ function addListeners() {
     window.addEventListener('resize', resizeCanvas)
 }
 
-function resizeCanvas() {
+function resizeCanvas(elImg) {
     let elCanvasContainer = document.querySelector('.canvas-container')
-
+    
     gElCanvas.width = elCanvasContainer.clientWidth - 40
-    gElCanvas.height = elCanvasContainer.clientHeight - 40
 }

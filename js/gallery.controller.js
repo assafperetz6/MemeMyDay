@@ -4,13 +4,13 @@ function renderGallery() {
     const elGallery = document.querySelector('.gallery')
     const imgs = getImgs()
 
-    const htmlStr = imgs.map(({ url, id }) => `<img src="${url}" onclick="onCreateMeme(${id - 1})">`).join('')
+    const htmlStr = imgs.map(({ url, id }) => `<img src="${url}" onclick="onCreateMeme(${id - 1}, this)">`).join('')
 
     elGallery.innerHTML = htmlStr
 }
 
-function onCreateMeme(imgIdx) {
-    loadMeme(imgIdx)
+function onCreateMeme(imgIdx, el) {
+    loadMeme(el)
     renderMeme(imgIdx)
     onToggleGalleryEditor()
 }
