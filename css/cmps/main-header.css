@@ -1,12 +1,15 @@
 .main-header {
-    background-color: lightblue;
+    height: 130px;
+    align-items: center;
+    background-color: var(--primary-1);
 }
 
 .main-header .logo {
+    padding: 5px;
+    border: solid 1px var(--base-clr);
     margin-inline-start: 20px;
 }
 
 .main-header .main-nav {
-    align-self: center;
     margin-inline-end: 20px;
 }
