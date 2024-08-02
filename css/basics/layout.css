@@ -15,10 +15,6 @@ body {
     background-color: var(--primary-2);
 }
 
-.gallery {
-    /* display: none; */
-}
-
 .meme-editor {
     grid-column: 2;
     height: 100%;
