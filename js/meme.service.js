@@ -8,8 +8,8 @@ var gMeme = {
 var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 
 
-function getMeme() {
-    return gImgs[0]
+function getMeme(imgIdx = 0) {
+    return gImgs[imgIdx]
 }
 
 function setLineTxt(txt) {

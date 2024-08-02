@@ -8,19 +8,26 @@ function paintCanvas() {
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function renderMeme() {
-    const meme = getMeme()
+function renderMeme(imgIdx) {
+    const meme = getMeme(imgIdx)
     
-    drawImg(meme.url)
+    getImg(meme.url)
 }
 
-function drawImg(memeUrl) {
+function getImg(memeUrl) {
     const elImg = new Image()
     elImg.src = memeUrl
     
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
+        console.log(elImg);
     }
+}
+
+function renderImg(elImg) {
+
 }
 
 function onSetLineTxt() {

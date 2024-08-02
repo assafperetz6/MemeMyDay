@@ -1,12 +1,16 @@
 'use strict'
 
-// function onInit() {
-//     gElCanvas = document.querySelector('canvas')
-//     gCtx = gElCanvas.getContext('2d')
+function onInit() {
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
 
-//     resizeCanvas()
-//     addListeners()
-// }
+    renderGallery()
+
+    resizeCanvas()
+    addListeners()
+
+    renderMeme()
+}
 
 function addListeners() {
     window.addEventListener('resize', resizeCanvas)
