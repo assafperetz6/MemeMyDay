@@ -9,17 +9,19 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'some text', // save and update txt while typing
-            size: 20, // get font size from gCTX object
-            color: 'red'
-        }
-    ]
+    lines: []
 }
 var gKeywordSearchCountMap = {'funny': 12,'cat': 16, 'baby': 2}
 
 
 function getMeme() {
     return gImgs[0]
+}
+
+function setLineTxt(txt) {
+    gMeme.lines.push({
+        txt,
+        size: 20,
+        color: 'white'
+    })
 }

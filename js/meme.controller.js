@@ -17,17 +17,23 @@ function renderMeme() {
 function drawImg(memeUrl) {
     const elImg = new Image()
     elImg.src = memeUrl
-
+    
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
-        drawTxt()
     }
 }
 
-function drawTxt() {
+function onSetLineTxt() {
+    const elTxtInput = document.querySelector('.txt-input')
+
+    setLineTxt(elTxtInput.value)
+}
+
+function drawTxt(txt) {
     gCtx.font = '80px serif'
     gCtx.strokeStyle = 'white'
     gCtx.lineWidth = 8
-    gCtx.strokeText('Hi!', 100, 100)
-    gCtx.fillText('Hi!', 100, 100)
+
+    gCtx.strokeText(txt, 100, 100)
+    gCtx.fillText(txt, 100, 100)
 }

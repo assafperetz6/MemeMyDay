@@ -8,3 +8,12 @@
     gap: 10px;
     align-items: center;
 }
+
+.meme-editor .canvas-container {
+    justify-content: center;
+
+    padding: 10px;
+    border: solid 2px var(--base-clr);
+    border-radius: 10px;
+    margin: 10px;
+}

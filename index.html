@@ -17,17 +17,15 @@
     </header>
 
     <main class="main-container">
-        <section class="gallery">
-            
-        </section>
+        <section class="gallery"></section>
 
         <section class="meme-editor">
             <h2 class="editor-title full">Meme-editor</h2>
-            <div class="canvas-container flex space-around">
+            <div class="canvas-container flex">
                 <canvas height="500" width="500"></canvas>
             </div>
             <section class="controls">
-                <input type="text">
+                <input class="txt-input" type="text" oninput="onSetLineTxt()">
                 <section class="main-btns">
                     <button>switch title</button>
                     <button>add</button>
@@ -46,7 +44,9 @@
             </section>
         </section>
     </main>
+    <script src="js/gallery.service.js"></script>
     <script src="js/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/main.js"></script>
 </body>
