@@ -2,10 +2,16 @@
     grid-column: 2;
     
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-template-rows: 80px minmax(500px, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px minmax(500px, 1fr);
+
+    border: solid 2px var(--primary-1);
 
     background-color: var(--primary-2);
+}
+
+.meme-editor h2 {
+    border-block-end: solid 2px var(--primary-1);
 }
 
 .meme-editor .controls {
@@ -13,13 +19,6 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
-}
 
-.meme-editor .canvas-container {
-    justify-content: center;
-
-    padding: 10px;
-    border: solid 2px var(--base-clr);
-    border-radius: 10px;
-    margin: 10px;
+    border-inline-start: solid 2px var(--primary-1);
 }
