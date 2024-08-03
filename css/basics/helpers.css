@@ -9,3 +9,7 @@
 .flex.space-around {
     justify-content: space-around;
 }
+
+.hidden {
+    display: none !important;
+}
