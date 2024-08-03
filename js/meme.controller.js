@@ -4,11 +4,15 @@ const gCtx = gElCanvas.getContext('2d')
 
 function onInit() {
     renderGallery()
-    resizeCanvas()
+    addListeners()
+    // resizeCanvas()
 }
 
 function addListeners() {
+    const elGallery = document.querySelector('.gallery')
+
     window.addEventListener('resize', resizeCanvas)
+    elGallery.addEventListener('click', toggleEditorGalley)
 }
 
 function resizeCanvas() {
@@ -23,29 +27,6 @@ function resizeCanvasToImg(img) {
 
     const { clientWidth, clientHeight } = gElCanvas
     setMemeSize({ clientWidth, clientHeight })
-}
-
-function renderMeme() {
-    const meme = getMeme()
-    const img = getMemeImg()
-
-    drawImg(img.url)
-}
-
-function drawImg(imgUrl) {
-    const img = new Image()
-    img.src = imgUrl
-    
-    // if(img.complete) {
-    //     debugger
-    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    // }
-    resizeCanvasToImg(img)
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    // else {
-    //     img.onload = () => {
-    //     }
-    // }
 }
 
 function onSetLineTxt(txt) {
