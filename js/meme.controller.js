@@ -3,8 +3,8 @@ const gElCanvas = document.querySelector('.meme-editor canvas')
 const gCtx = gElCanvas.getContext('2d')
 
 function onInit() {
+    renderGallery()
     resizeCanvas()
-    renderMeme()
 }
 
 function addListeners() {
@@ -30,22 +30,22 @@ function renderMeme() {
     const img = getMemeImg()
 
     drawImg(img.url)
-    // strokeText()
 }
 
 function drawImg(imgUrl) {
     const img = new Image()
     img.src = imgUrl
     
-    if(img.complete) {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
-    else {
-        img.onload = () => {
-            resizeCanvasToImg(img)
-            gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        }
-    }
+    // if(img.complete) {
+    //     debugger
+    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    // }
+    resizeCanvasToImg(img)
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    // else {
+    //     img.onload = () => {
+    //     }
+    // }
 }
 
 function onSetLineTxt(txt) {
