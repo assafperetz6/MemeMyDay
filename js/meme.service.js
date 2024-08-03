@@ -18,7 +18,7 @@ const gMeme = {
     size: {}
 }
 
-var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
+const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 function getMeme() {
     return gMeme
@@ -30,4 +30,8 @@ function getMemeImg() {
 
 function setMemeSize(size) {
     gMeme.size = size
+}
+
+function setLineTxt(txt, size, color, linePos) {
+    gMeme.lines[0] = {...gMeme.lines[0], txt, size, color, linePos}
 }

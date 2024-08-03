@@ -30,17 +30,31 @@ function renderMeme() {
     const img = getMemeImg()
 
     drawImg(img.url)
+    // strokeText()
 }
 
 function drawImg(imgUrl) {
     const img = new Image()
     img.src = imgUrl
     
-    img.onload = () => {
-        resizeCanvasToImg(img)
-
-        gCtx.fillStyle = 'lightblue'
-        gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+    if(img.complete) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
+    else {
+        img.onload = () => {
+            resizeCanvasToImg(img)
+            gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        }
+    }
 }
+
+function onSetLineTxt(txt) {
+    let txtWidth = gCtx.measureText(txt).width
+    setLineTxt(txt, gCtx.font, gCtx.fillStyle, { x: 100, y: 100, width: txtWidth })
+    renderMeme()
+    gCtx.fillStyle = 'White'
+    gCtx.font = "50px sans-serif";
+    gCtx.strokeText(txt, 100, 100)
+    gCtx.fillText(txt, 100, 100)
+}
+
