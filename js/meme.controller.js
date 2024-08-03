@@ -7,6 +7,10 @@ function onInit() {
     renderMeme()
 }
 
+function addListeners() {
+    window.addEventListener('resize', resizeCanvas)
+}
+
 function resizeCanvas() {
     const elCanvasContainer = document.querySelector('.canvas-container')
 
@@ -15,12 +19,10 @@ function resizeCanvas() {
 }
 
 function resizeCanvasToImg(img) {
-    const elCanvasContainer = document.querySelector('.canvas-container')
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
 
-    elCanvasContainer.style.width = img.naturalWidth
-    elCanvasContainer.style.height = img.naturalHeight
-
-    resizeCanvas()
+    const { clientWidth, clientHeight } = gElCanvas
+    setMemeSize({ clientWidth, clientHeight })
 }
 
 function renderMeme() {
@@ -33,7 +35,12 @@ function renderMeme() {
 function drawImg(imgUrl) {
     const img = new Image()
     img.src = imgUrl
+    
+    img.onload = () => {
+        resizeCanvasToImg(img)
 
-    resizeCanvasToImg(img)
-    img.onload = () => gCtx.drawImage(img, 0, 0)
+        gCtx.fillStyle = 'lightblue'
+        gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    }
 }
