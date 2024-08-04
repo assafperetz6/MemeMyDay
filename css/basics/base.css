@@ -41,4 +41,10 @@ select {
 .btn {
 	border: solid 2px var(--base-clr);
 	border-radius: 50px;
+
+	cursor: pointer;
+}
+
+.btn:active {
+	cursor: grabbing;
 }

@@ -16,7 +16,7 @@
         </nav>
     </header>
 
-    <main class="main-container flex">
+    <div class="main-container flex justify-center">
         <section class="gallery-container">
             <nav class="gallery-nav flex space-between">
                 <input type="text" placeholder="Search">
@@ -29,35 +29,34 @@
             </nav>
             <div class="gallery"></div>
         </section>
+    </div>
 
-        <section class="meme-editor hidden">
-            <h2 class="editor-title full">Meme-editor</h2>
-            <div class="canvas-container flex">
-                <canvas height="500" width="500"></canvas>
-            </div>
-            <section class="controls">
-                <input class="txt-input" type="text" oninput="onSetLineTxt(value)">
+    <div class="meme-editor hidden">
+        <div class="canvas-container flex">
+            <canvas height="500" width="500"></canvas>
+        </div>
+        <section class="controls">
+            <input class="txt-input" type="text" placeholder="Type something..." oninput="onSetLineTxt(value)">
 
-                <section class="main-btns">
-                    <button onclick="onSwitchTitleToEdit()">switch title</button>
-                    <button onclick="onAddNewLine()">add</button>
-                    <button onclick="onRemoveLine()">delete</button>
-                </section>
+            <section class="main-btns">
+                <button onclick="onSwitchTitleToEdit()">switch title</button>
+                <button onclick="onAddNewLine()">add</button>
+                <button onclick="onRemoveLine()">delete</button>
+            </section>
 
-                <section class="font-btns">
-                    <button>A+</button>
-                    <button>A-</button>
-                    <button>align</button>
-                </section>
+            <section class="font-btns">
+                <button>A+</button>
+                <button>A-</button>
+                <button>align</button>
+            </section>
 
-                <section class="share-btns">
-                    <button>save</button>
-                    <button>share</button>
-                    <button>download</button>
-                </section>
+            <section class="share-btns">
+                <button>save</button>
+                <button>share</button>
+                <button>download</button>
             </section>
         </section>
-    </main>
+    </div>
     <script src="js/utils.service.js"></script>
     <script src="js/storage.service.js"></script>
     <script src="js/gallery.service.js"></script>

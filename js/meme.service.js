@@ -61,7 +61,7 @@ function addNewLine() {
 	if(gMeme.lines >= 1) return
 	
 	let line = {
-		txt: 'Write something',
+		txt: '',
 		font,
 		strokeStyle,
 		fillStyle,
@@ -78,7 +78,7 @@ function addNewLine() {
 }
 
 function removeLine() {
-    const lineIdx = gMeme.selectedLineIdx
+	const lineIdx = gMeme.selectedLineIdx
     gMeme.lines.splice(lineIdx, 1)
     gMeme.selectedLineIdx = Math.max(0, lineIdx - 1)
 
@@ -89,12 +89,13 @@ function removeLine() {
 }
 
 function switchTitleToEdit() {
-    if(gMeme.lines.length < 1) return
-    
+    if(gMeme.lines.length <= 1) return
+
+	const { selectedLineIdx, lines } = gMeme
+	if(!gMeme.lines[selectedLineIdx].txt) removeLine()
     gMeme.selectedLineIdx++
-    
-    let { selectedLineIdx, lines } = gMeme
-    if(selectedLineIdx >= lines.length) gMeme.selectedLineIdx = 0
+
+    if(gMeme.selectedLineIdx >= lines.length) gMeme.selectedLineIdx = 0
 
     return lines[gMeme.selectedLineIdx].txt
 }

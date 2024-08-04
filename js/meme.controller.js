@@ -53,37 +53,45 @@ function renderMeme() {
 function drawImg(imgUrl) {
     const img = new Image()
     img.src = imgUrl
-
-    // if(img.complete) {
-    //     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    // }
-    // else img.onload = () => {
-    // }
     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function onSetLineTxt(txt) {
-    // let txtWidth = gCtx.measureText(txt).width
-
     setLineTxt(txt)
     renderMeme()
 }
 
 function renderLines() {
-    const lines = getMeme().lines
+    const { lines, selectedLineIdx } = getMeme()
 
     if(lines.length < 1) return
     
-    lines.forEach(({ txt, font, strokeStyle, fillStyle, linePos }) => {
+    lines.forEach(({ txt, font, strokeStyle, fillStyle, linePos }, idx) => {
         const { x, y } = linePos
         gCtx.font = font
+        gCtx.lineWidth = 2
         gCtx.strokeStyle = strokeStyle
         gCtx.fillStyle = fillStyle
         gCtx.strokeText(txt, x, y)
         gCtx.fillText(txt, x, y)
+
+        addTxtPlaceholder(lines, selectedLineIdx, linePos)
+        
+        if(idx === selectedLineIdx) {
+            gCtx.strokeRect(x - 10, y - 40, gCtx.measureText(txt || 'Type something...').width + 20, 60)
+        }
     })
+}
+
+function addTxtPlaceholder(lines, selectedLineIdx) {
+    const { x, y } = lines[selectedLineIdx].linePos
+
+    
+    if(!lines[selectedLineIdx].txt) {
+        gCtx.strokeText('Type something...', x, y)
+        gCtx.fillText('Type something...', x, y)
+    }
 }
 
 // CRUDL
@@ -107,5 +115,9 @@ function onRemoveLine() {
 
 function onSwitchTitleToEdit() {
     const elTxtInput = document.querySelector('.txt-input')
-    elTxtInput.value = switchTitleToEdit() || ''
+    const currValue = elTxtInput.value
+
+    elTxtInput.value = switchTitleToEdit() || currValue
+
+    renderMeme()
 }
