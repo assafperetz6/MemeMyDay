@@ -75,9 +75,6 @@ function renderLines() {
     const lines = getMeme().lines
     const elTxtInput = document.querySelector('.txt-input')
 
-    // if(!elTxtInput.value) elTxtInput.value = lines[0].txt
-    // if(!lines.length) onAddNewLine()
-
     lines.forEach(({ txt, font, strokeStyle, fillStyle, linePos }) => {
         const { x, y } = linePos
         gCtx.font = font
@@ -101,8 +98,13 @@ function onAddNewLine() {
 
 function onRemoveLine() {
     const elTxtInput = document.querySelector('.txt-input')
-    // debugger
+
     elTxtInput.value = removeLine() || ''
-    renderMeme()
     elTxtInput.focus()
+    renderMeme()
+}
+
+function onSwitchTitleToEdit() {
+    const elTxtInput = document.querySelector('.txt-input')
+    elTxtInput.value = switchTitleToEdit() || ''
 }

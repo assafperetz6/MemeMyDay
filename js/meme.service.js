@@ -9,8 +9,8 @@ const gPrefs = {
 const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 function loadMemeToEdit() {
-    // loadFromStorage('memeToEdit') ||
-	gMeme = {
+	gMeme = loadFromStorage('memeToEdit') ||
+    {
 		selectedImgId: 2,
 		selectedLineIdx: 0,
 		lines: [],
@@ -70,6 +70,7 @@ function addNewLine() {
     else if(gMeme.lines.length > 2) line.linePos = { x: 50, y: 200 }
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 
+    _saveCurrMeme()
     return line.txt
 }
 
@@ -78,7 +79,19 @@ function removeLine() {
     gMeme.lines.splice(lineIdx, 1)
     gMeme.selectedLineIdx = Math.max(0, lineIdx - 1)
 
-    if(gMeme.lines.length < 1) return
+    _saveCurrMeme()
 
+    if(gMeme.lines.length < 1) return
     return gMeme.lines[gMeme.selectedLineIdx].txt
+}
+
+function switchTitleToEdit() {
+    if(gMeme.lines.length < 1) return
+    
+    gMeme.selectedLineIdx++
+    
+    let { selectedLineIdx, lines } = gMeme
+    if(selectedLineIdx >= lines.length) gMeme.selectedLineIdx = 0
+
+    return lines[gMeme.selectedLineIdx].txt
 }
