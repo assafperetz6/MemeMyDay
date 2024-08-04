@@ -1,0 +1,9 @@
+@font-face {
+    font-family: slabo;
+    src: url(/fonts/Slabo_13px/Slabo13px-Regular.ttf);
+}
+
+@font-face {
+    font-family: workSans;
+    src: url(/fonts/Work_Sans/static/WorkSans-Light.ttf);
+}

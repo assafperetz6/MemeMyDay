@@ -7,12 +7,16 @@
 }
 
 body {
-    background-color: var(--base-clr);
+    background-color: var(--primary-1);
+
+	font-family: workSans, sans-serif;
 	line-height: 1.5;
+	color: var(--base-clr);
 	-webkit-font-smoothing: antialiased;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
+	font-family: slabo, sans-serif;
 	overflow-wrap: break-word;
 }
 
@@ -32,4 +36,9 @@ button,
 textarea,
 select {
 	font: inherit;
+}
+
+.btn {
+	border: solid 2px var(--base-clr);
+	border-radius: 50px;
 }

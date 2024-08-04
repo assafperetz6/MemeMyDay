@@ -1,10 +1,29 @@
+.gallery-container {
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.gallery-nav {
+    height: 50px;
+    margin-block-end: 30px;
+}
+
+.gallery-nav ul {
+    display: inline-flex;
+    gap: 5px;
+    padding: 0;
+    list-style: none;
+}
+
 .gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2px;
+    columns: 3;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
 }
 
 .gallery > * {
+    /* padding: 10px; */
+
     cursor: pointer;
     object-fit: cover;
 }

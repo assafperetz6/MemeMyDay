@@ -1,7 +1,9 @@
+@import url(/css/setup/vars.css);
+@import url(/css/setup/typography.css);
 @import url(/css/basics/base.css);
-@import url(/css/basics/vars.css);
 @import url(/css/basics/helpers.css);
 @import url(/css//basics/layout.css);
 @import url(/css//cmps/main-header.css);
+@import url(/css//cmps/main-container.css);
 @import url(/css//cmps/meme-editor.css);
 @import url(/css//cmps/gallery.css);

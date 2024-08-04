@@ -11,13 +11,24 @@
         <h1 class="logo">Meme my day</h1>
 
         <nav class="main-nav">
-            <button class="btn" onclick="onToggleEditorGalley()">Gallery</button>
+            <button class="btn" onclick="toggleEditorGalley()">Gallery</button>
             <button class="btn">About</button>
         </nav>
     </header>
 
-    <main class="main-container">
-        <section class="gallery"></section>
+    <main class="main-container flex">
+        <section class="gallery-container">
+            <nav class="gallery-nav flex space-between">
+                <input type="text" placeholder="Search">
+                <ul>
+                    <li>Funny</li>
+                    <li>Weird</li>
+                    <li>Politician</li>
+                </ul>
+                <button class="btn">More</button>
+            </nav>
+            <div class="gallery"></div>
+        </section>
 
         <section class="meme-editor hidden">
             <h2 class="editor-title full">Meme-editor</h2>
@@ -28,9 +39,9 @@
                 <input class="txt-input" type="text" oninput="onSetLineTxt(value)">
 
                 <section class="main-btns">
-                    <button>switch title</button>
-                    <button>add</button>
-                    <button>delete</button>
+                    <button onclick="onSwitchTitleToEdit()">switch title</button>
+                    <button onclick="onAddNewLine()">add</button>
+                    <button onclick="onRemoveLine()">delete</button>
                 </section>
 
                 <section class="font-btns">
@@ -48,6 +59,7 @@
         </section>
     </main>
     <script src="js/utils.service.js"></script>
+    <script src="js/storage.service.js"></script>
     <script src="js/gallery.service.js"></script>
     <script src="js/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
