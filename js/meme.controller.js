@@ -5,7 +5,9 @@ const gCtx = gElCanvas.getContext('2d')
 function onInit() {
     renderGallery()
     addListeners()
-    // resizeCanvas()
+    loadMemeToEdit()
+    setInitCtxPrefs()
+    resizeCanvas()
 }
 
 function addListeners() {
@@ -15,11 +17,23 @@ function addListeners() {
     elGallery.addEventListener('click', toggleEditorGalley)
 }
 
+function setInitCtxPrefs() {
+    const { font, strokeStyle, fillStyle } = getUserPrefs()
+    gCtx.font = font
+    gCtx.strokeStyle = strokeStyle
+    gCtx.fillStyle = fillStyle
+}
+
 function resizeCanvas() {
+    const elEditor = document.querySelector('.meme-editor')
+    if (elEditor.classList.contains('hidden')) return
+
     const elCanvasContainer = document.querySelector('.canvas-container')
 
     gElCanvas.width = elCanvasContainer.clientWidth
     gElCanvas.height = elCanvasContainer.clientHeight
+
+    renderMeme()
 }
 
 function resizeCanvasToImg(img) {
@@ -29,13 +43,66 @@ function resizeCanvasToImg(img) {
     setMemeSize({ clientWidth, clientHeight })
 }
 
-function onSetLineTxt(txt) {
-    let txtWidth = gCtx.measureText(txt).width
-    setLineTxt(txt, gCtx.font, gCtx.fillStyle, { x: 100, y: 100, width: txtWidth })
-    renderMeme()
-    gCtx.fillStyle = 'White'
-    gCtx.font = "50px sans-serif";
-    gCtx.strokeText(txt, 100, 100)
-    gCtx.fillText(txt, 100, 100)
+function renderMeme() {
+    const img = getMemeImg()
+
+    drawImg(img.url)
+    renderLines()
 }
 
+function drawImg(imgUrl) {
+    const img = new Image()
+    img.src = imgUrl
+
+    // if(img.complete) {
+    //     gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    // }
+    // else img.onload = () => {
+    // }
+    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function onSetLineTxt(txt) {
+    // let txtWidth = gCtx.measureText(txt).width
+
+    setLineTxt(txt)
+    renderMeme()
+}
+
+function renderLines() {
+    const lines = getMeme().lines
+    const elTxtInput = document.querySelector('.txt-input')
+
+    // if(!elTxtInput.value) elTxtInput.value = lines[0].txt
+    // if(!lines.length) onAddNewLine()
+
+    lines.forEach(({ txt, font, strokeStyle, fillStyle, linePos }) => {
+        const { x, y } = linePos
+        gCtx.font = font
+        gCtx.strokeStyle = strokeStyle
+        gCtx.fillStyle = fillStyle
+        gCtx.strokeText(txt, x, y)
+        gCtx.fillText(txt, x, y)
+    })
+}
+
+// CRUDL
+
+function onAddNewLine() {
+    const elTxtInput = document.querySelector('.txt-input')
+
+    elTxtInput.value = addNewLine()
+    renderMeme()
+    elTxtInput.focus()
+
+}
+
+function onRemoveLine() {
+    const elTxtInput = document.querySelector('.txt-input')
+    // debugger
+    elTxtInput.value = removeLine() || ''
+    renderMeme()
+    elTxtInput.focus()
+}
