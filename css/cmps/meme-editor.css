@@ -1,0 +1,25 @@
+.meme-editor {
+    grid-column: 2;
+    
+    display: grid;
+    grid-template-columns:  500px auto;
+    grid-template-rows: 60px minmax(auto, 1fr);
+
+    border: solid 2px var(--primary-1);
+
+    background-color: var(--primary-2);
+}
+
+.meme-editor h2 {
+    border-block-end: solid 2px var(--primary-1);
+}
+
+.meme-editor .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    padding: 10px;
+    border-inline-start: solid 2px var(--primary-1);
+}

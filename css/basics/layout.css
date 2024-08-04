@@ -1,0 +1,17 @@
+body {
+    display: grid;
+    grid-template-columns: minmax(10px, 1fr) minmax(auto, 1100px) minmax(10px, 1fr);
+    row-gap: 20px;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+.main-container {
+    grid-column: 2;
+    height: 100%;
+
+    background-color: var(--primary-2);
+}
+

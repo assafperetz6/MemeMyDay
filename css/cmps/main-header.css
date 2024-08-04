@@ -1,0 +1,15 @@
+.main-header {
+    height: 130px;
+    align-items: center;
+    background-color: var(--primary-1);
+}
+
+.main-header .logo {
+    padding: 5px;
+    border: solid 1px var(--base-clr);
+    margin-inline-start: 20px;
+}
+
+.main-header .main-nav {
+    margin-inline-end: 20px;
+}

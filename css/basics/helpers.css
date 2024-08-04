@@ -1,0 +1,15 @@
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.space-around {
+    justify-content: space-around;
+}
+
+.hidden {
+    display: none !important;
+}

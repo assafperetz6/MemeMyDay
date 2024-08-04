@@ -6,18 +6,52 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <header>
-        <h1>Meme my day</h1>
+<body onload="onInit()">
+    <header class="main-header full flex space-between">
+        <h1 class="logo">Meme my day</h1>
+
+        <nav class="main-nav">
+            <button class="btn" onclick="onToggleEditorGalley()">Gallery</button>
+            <button class="btn">About</button>
+        </nav>
     </header>
 
-    <main>
+    <main class="main-container">
         <section class="gallery"></section>
 
-        <section class="editor">
-            <canvas height="500" width="500"></canvas>
+        <section class="meme-editor hidden">
+            <h2 class="editor-title full">Meme-editor</h2>
+            <div class="canvas-container flex">
+                <canvas height="500" width="500"></canvas>
+            </div>
+            <section class="controls">
+                <input class="txt-input" type="text" oninput="onSetLineTxt(value)">
+
+                <section class="main-btns">
+                    <button>switch title</button>
+                    <button>add</button>
+                    <button>delete</button>
+                </section>
+
+                <section class="font-btns">
+                    <button>A+</button>
+                    <button>A-</button>
+                    <button>align</button>
+                </section>
+
+                <section class="share-btns">
+                    <button>save</button>
+                    <button>share</button>
+                    <button>download</button>
+                </section>
+            </section>
         </section>
     </main>
-    <script src="js/main.js"></script>
+    <script src="js/utils.service.js"></script>
+    <script src="js/gallery.service.js"></script>
+    <script src="js/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+    <!-- <script src="js/main.js"></script> -->
 </body>
 </html>
