@@ -1,11 +1,12 @@
 .main-header {
+    grid-column: 2;
     height: 80px;
     align-items: center;
 
     border-radius: 80px;
-    margin: 10px 8px;
+    margin-block: 10px;
 
-    background-color: var(--primary-1);
+    background: linear-gradient(100deg, #0F9BB3, #2CB77B 70.71%);
 }
 
 .main-header .logo {

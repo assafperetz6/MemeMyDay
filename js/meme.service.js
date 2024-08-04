@@ -2,7 +2,7 @@
 let gMeme
 
 const gPrefs = {
-	font: '40px arial',
+	font: '40px workSans',
 	strokeStyle: 'black',
 	fillStyle: 'white',
 }
@@ -57,11 +57,14 @@ function getUserPrefs() {
 // CRUDL
 
 function addNewLine() {
+	const { font, strokeStyle, fillStyle } = gPrefs
+	if(gMeme.lines >= 1) return
+	
 	let line = {
 		txt: 'Write something',
-		font: '40px arial',
-		strokeStyle: 'black',
-		fillStyle: 'white',
+		font,
+		strokeStyle,
+		fillStyle,
 		linePos: { x: 50, y: 100 },
 	}
 	gMeme.lines.push(line)

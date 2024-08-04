@@ -73,8 +73,9 @@ function onSetLineTxt(txt) {
 
 function renderLines() {
     const lines = getMeme().lines
-    const elTxtInput = document.querySelector('.txt-input')
 
+    if(lines.length < 1) return
+    
     lines.forEach(({ txt, font, strokeStyle, fillStyle, linePos }) => {
         const { x, y } = linePos
         gCtx.font = font

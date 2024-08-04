@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/setup/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body onload="onInit()">
     <header class="main-header full flex space-between">
@@ -16,10 +16,21 @@
         </nav>
     </header>
 
-    <main class="main-container">
-        <section class="gallery hidden"></section>
+    <main class="main-container flex">
+        <section class="gallery-container">
+            <nav class="gallery-nav flex space-between">
+                <input type="text" placeholder="Search">
+                <ul>
+                    <li>Funny</li>
+                    <li>Weird</li>
+                    <li>Politician</li>
+                </ul>
+                <button class="btn">More</button>
+            </nav>
+            <div class="gallery"></div>
+        </section>
 
-        <section class="meme-editor">
+        <section class="meme-editor hidden">
             <h2 class="editor-title full">Meme-editor</h2>
             <div class="canvas-container flex">
                 <canvas height="500" width="500"></canvas>

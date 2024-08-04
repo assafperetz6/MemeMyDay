@@ -16,7 +16,7 @@ function onImgSelect(imgId) {
 }
 
 function toggleEditorGalley() {
-    const elGallery = document.querySelector('.gallery')
+    const elGallery = document.querySelector('.gallery-container')
     const elEditor = document.querySelector('.meme-editor')
 
     elGallery.classList.toggle('hidden')
