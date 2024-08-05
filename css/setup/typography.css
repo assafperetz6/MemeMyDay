@@ -33,10 +33,10 @@
 	content: '\f363';
 }
 
-.fa.enlarge::before {
+.fa.increase::before {
 	content: '\f031 \2b';
 }
-.fa.shrink::before {
+.fa.decrease::before {
 	content: '\f031 \f068';
 }
 

@@ -3,159 +3,179 @@ const gElCanvas = document.querySelector('.meme-editor canvas')
 const gCtx = gElCanvas.getContext('2d')
 
 function onInit() {
-    renderGallery()
-    addListeners()
-    loadMemeToEdit()
-    setInitCtxPrefs()
-    resizeCanvas()
+	renderGallery()
+	addListeners(gElCanvas)
+	loadMemeToEdit()
+	setInitCtxPrefs()
+	resizeCanvas()
 }
 
 function addListeners() {
-    const elGallery = document.querySelector('.gallery')
+	const elGallery = document.querySelector('.gallery')
 
-    window.addEventListener('resize', resizeCanvas)
-    elGallery.addEventListener('click', toggleEditorGalley)
+	window.addEventListener('resize', resizeCanvas)
+	elGallery.addEventListener('click', toggleEditorGalley)
 }
 
 function setInitCtxPrefs() {
-    const { font, strokeStyle, fillStyle } = getUserPrefs()
-    gCtx.font = font
-    gCtx.strokeStyle = strokeStyle
-    gCtx.fillStyle = fillStyle
+	const { font, strokeStyle, fillStyle } = getUserPrefs()
+	const { size, family } = font
+
+	gCtx.font = `${size}px ${family}`
+	gCtx.strokeStyle = strokeStyle
+	gCtx.fillStyle = fillStyle
 }
 
 function onToggleMenu() {
-    const elMainMenu = document.querySelector('body')
+	const elMainMenu = document.querySelector('body')
 
-    elMainMenu.classList.toggle('menu-open')
+	elMainMenu.classList.toggle('menu-open')
 }
 
 function resizeCanvas() {
-    const elEditor = document.querySelector('.meme-editor')
-    if (elEditor.classList.contains('hidden')) return
+	const elEditor = document.querySelector('.meme-editor')
+	if (elEditor.classList.contains('hidden')) return
 
-    const elCanvasContainer = document.querySelector('.canvas-container')
+	const elCanvasContainer = document.querySelector('.canvas-container')
 
-    gElCanvas.width = elCanvasContainer.clientWidth
-    gElCanvas.height = elCanvasContainer.clientHeight
-    
-    renderMeme()
+	gElCanvas.width = elCanvasContainer.clientWidth
+	gElCanvas.height = elCanvasContainer.clientHeight
+
+	renderMeme()
 }
 
 function resizeCanvasToImg(img) {
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+	gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
 
-    const { clientWidth, clientHeight } = gElCanvas
-    setMemeSize({ clientWidth, clientHeight })
+	const { clientWidth, clientHeight } = gElCanvas
+	setMemeSize({ clientWidth, clientHeight })
 }
 
 function renderMeme() {
-    const img = getMemeImg()
+	const img = getMemeImg()
 
-    drawImg(img.url)
-    renderLines()
-    setCurrColors()
+	drawImg(img.url)
+	renderLines()
+	setCurrColors()
 }
 
 function drawImg(imgUrl) {
-    const img = new Image()
-    img.src = imgUrl
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+	const img = new Image()
+	img.src = imgUrl
+	gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function onSetLineTxt(txt) {
-    setLineTxt(txt)
-    renderMeme()
+	setLineTxt(txt)
+	renderMeme()
 }
 
 function renderLines() {
-    const { lines, selectedLineIdx } = getMeme()
+	const { lines, selectedLineIdx } = getMeme()
 
-    if(lines.length < 1) return
-    
-    lines.forEach(({ txt, font, strokeStyle, fillStyle, linePos }, idx) => {
-        const { x, y } = linePos
-        gCtx.font = font
-        gCtx.lineWidth = 2
-        gCtx.strokeStyle = strokeStyle
-        gCtx.fillStyle = fillStyle
-        gCtx.strokeText(txt, x, y)
-        gCtx.fillText(txt, x, y)
+	if (lines.length < 1) return
 
-        addTxtPlaceholder(lines, selectedLineIdx, linePos)
-        
-        if(idx === selectedLineIdx) {
-            gCtx.strokeRect(x - 10, y - 40, gCtx.measureText(txt || 'Type something...').width + 20, 60)
-        }
-    })
+	lines.forEach((line, idx) => renderLine(line, idx === selectedLineIdx))
 }
 
-function addTxtPlaceholder(lines, selectedLineIdx) {
-    const { x, y } = lines[selectedLineIdx].linePos
 
-    
-    if(!lines[selectedLineIdx].txt) {
+
+function renderLine(line, isSelected) {
+    const { txt, font, strokeStyle, fillStyle, linePos, scale } = line
+    const { x, y } = linePos
+    const { size, family } = font
+
+    if (scale) gCtx.scale(scale, scale)
+
+    gCtx.font = `${size}px ${family}`
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = strokeStyle
+    gCtx.fillStyle = fillStyle
+
+    if (txt) {
+        gCtx.strokeText(txt, x, y)
+        gCtx.fillText(txt, x, y)
+    } else if (isSelected) {
         gCtx.strokeText('Type something...', x, y)
         gCtx.fillText('Type something...', x, y)
+    }
+
+    if (isSelected) {
+        gCtx.strokeStyle = 'black'
+        gCtx.strokeRect(
+            x - 10,
+            y - 40,
+            gCtx.measureText(txt || 'Type something...').width + 20,
+            60
+        )
+        gCtx.strokeStyle = strokeStyle
     }
 }
 
 function setCurrColors() {
-    const elStrokeClr = document.querySelector('.stroke-color')
-    const elFillClr = document.querySelector('.fill-color')
-    const { lines, selectedLineIdx } = getMeme()
-    
-    elStrokeClr.value = lines[selectedLineIdx].strokeStyle
-    elFillClr.value = lines[selectedLineIdx].fillStyle
+	const elStrokeClr = document.querySelector('.stroke-color')
+	const elFillClr = document.querySelector('.fill-color')
+	const { lines, selectedLineIdx } = getMeme()
+
+	if (lines.length < 1) return
+
+	elStrokeClr.value = lines[selectedLineIdx].strokeStyle
+	elFillClr.value = lines[selectedLineIdx].fillStyle
 }
 
 // CRUD
 
-// CREATE 
+// CREATE
 
 function onAddNewLine() {
-    const elTxtInput = document.querySelector('.meme-editor .txt-input')
+	const elTxtInput = document.querySelector('.meme-editor .txt-input')
 
-    elTxtInput.value = addNewLine()
-    renderMeme()
-    elTxtInput.focus()
-
+	elTxtInput.value = addNewLine()
+	renderMeme()
+	elTxtInput.focus()
 }
 
 // DELETE
 
 function onRemoveLine() {
-    const elTxtInput = document.querySelector('.meme-editor .txt-input')
+	const elTxtInput = document.querySelector('.meme-editor .txt-input')
 
-    elTxtInput.value = removeLine() || ''
-    elTxtInput.focus()
-    renderMeme()
+	elTxtInput.value = removeLine() || ''
+	elTxtInput.focus()
+	renderMeme()
 }
 
-// EDIT 
+// EDIT
 
 function onSwitchTitleToEdit() {
-    const elTxtInput = document.querySelector('.meme-editor .txt-input')
-    const currValue = elTxtInput.value
-    
-    elTxtInput.value = switchTitleToEdit() || currValue
-    renderMeme()    
+	const elTxtInput = document.querySelector('.meme-editor .txt-input')
+	const currValue = elTxtInput.value
+
+	elTxtInput.value = switchTitleToEdit() || currValue
+	renderMeme()
+}
+
+function onChangeFontSize(isIncreased) {
+	changeFontSize(isIncreased)
+	renderMeme()
 }
 
 function onSetFillColor(color) {
-    setFillColor(color)
-    renderMeme()
+	setFillColor(color)
+	renderMeme()
 }
 
 function onSetStrokeColor(color) {
-    setStrokeColor(color)
-    renderMeme()
+	setStrokeColor(color)
+	renderMeme()
 }
+
+//_____________________________
 
 // Download and share
 
 function downloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
-    elLink.href = imgContent
+	const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+	elLink.href = imgContent
 }
