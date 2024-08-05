@@ -54,7 +54,9 @@ function getUserPrefs() {
 	return gPrefs
 }
 
-// CRUDL
+// CRUD
+
+// CREATE 
 
 function addNewLine() {
 	const { font, strokeStyle, fillStyle } = gPrefs
@@ -77,6 +79,8 @@ function addNewLine() {
     return line.txt
 }
 
+// REMOVE
+
 function removeLine() {
 	const lineIdx = gMeme.selectedLineIdx
     gMeme.lines.splice(lineIdx, 1)
@@ -86,6 +90,22 @@ function removeLine() {
 
     if(gMeme.lines.length < 1) return
     return gMeme.lines[gMeme.selectedLineIdx].txt
+}
+
+// EDIT
+
+function setFillColor(color) {
+	const { lines, selectedLineIdx } = gMeme
+	
+	lines[selectedLineIdx].fillStyle = `${color}`
+	_saveCurrMeme()
+}
+
+function setStrokeColor(color) {
+	const { lines, selectedLineIdx } = gMeme
+	
+	lines[selectedLineIdx].strokeStyle = `${color}`
+	_saveCurrMeme()
 }
 
 function switchTitleToEdit() {

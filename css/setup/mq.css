@@ -86,10 +86,6 @@
         justify-items: center;
     }
 
-    .meme-editor section.controls {
-
-    }
-
 
 }
 
@@ -106,7 +102,7 @@
     }
 
     div.meme-editor {
-        grid-template-columns: 500px auto;
+        grid-template-columns: 1fr 1fr;
     }
 
     .meme-editor section.controls {
@@ -132,6 +128,7 @@
     }
 
     div.meme-editor {
+        grid-template-columns: 1fr 1.5fr;
         justify-items: unset;
     }
 

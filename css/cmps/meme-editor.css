@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 100%;
     gap: 20px;
-    place-items: space-between;
+    /* place-items: space-between; */
 
     border: solid 2px var(--primary-1);
 
@@ -20,7 +20,7 @@
 
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 1fr;
-    gap: 10px;
+
     place-content: center;
     place-items: center;
 
@@ -34,17 +34,17 @@
     width: 100%;
 }
 
-.controls input {
+.controls > input {
     grid-column: 1 / 4;
 
     padding: .7em;
     border-radius: 20px;
+    margin-block: 5px;
 }
 
 .controls > section {
     display: flex;
-    height: 100%;
-
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 
@@ -58,23 +58,30 @@
     grid-column: span 2;
 }
 
-.font-btns {
-    grid-area: 1 / 4 / 2 / -1;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.font-btns > * {
-    gap: 5px;
-}
-
 .controls .btn {
     height: 45px;
     width: 45px;
 
     padding: 0;
+}
+
+.font-btns {
+    grid-area: 1 / 4 / 2 / -1;
+
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.font-btns > * {
+    width: 100%;
+    gap: 5px;
+}
+
+.color-picker input {
+    padding: 1px;
+
+    background-color: var(--base-clr);
 }
 
 .btn.download {

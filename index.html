@@ -51,17 +51,28 @@
                 <button class="btn fa next-line" onclick="onSwitchTitleToEdit()" aria-hidden="false"></button>
                 <button class="btn fa add" onclick="onAddNewLine()" aria-hidden="false"></button>
                 <button class="btn fa remove" onclick="onRemoveLine()" aria-hidden="false"></button>
-            </section>
 
+                <!-- <div class="font-color-btns">
+                </div> -->
+            </section>
+            
             <section class="font-btns">
-                <div class="font-size flex space-evenly">
+                <div class="flex space-around">
                     <button class="btn fa enlarge"></button>
                     <button class="btn fa shrink"></button>
-                </div>
-                <div class="align flex space-between">
                     <button class="btn fa align-left"></button>
                     <button class="btn fa align-center"></button>
                     <button class="btn fa align-right"></button>
+                </div>
+                <div class="color-picker flex space-evenly">
+                    <label>
+                        Stroke color
+                        <input class="stroke-color" type="color" oninput="onSetStrokeColor(value)">
+                    </label>
+                    <label>
+                        Fill color
+                        <input class="fill-color" type="color" oninput="onSetFillColor(value)">
+                    </label>
                 </div>
             </section>
 

@@ -102,10 +102,12 @@ function addTxtPlaceholder(lines, selectedLineIdx) {
     }
 }
 
-// CRUDL
+// CRUD
+
+// CREATE 
 
 function onAddNewLine() {
-    const elTxtInput = document.querySelector('.txt-input')
+    const elTxtInput = document.querySelector('.meme-editor .txt-input')
 
     elTxtInput.value = addNewLine()
     renderMeme()
@@ -113,13 +115,17 @@ function onAddNewLine() {
 
 }
 
+// DELETE
+
 function onRemoveLine() {
-    const elTxtInput = document.querySelector('.txt-input')
+    const elTxtInput = document.querySelector('.meme-editor .txt-input')
 
     elTxtInput.value = removeLine() || ''
     elTxtInput.focus()
     renderMeme()
 }
+
+// EDIT 
 
 function onSwitchTitleToEdit() {
     const elTxtInput = document.querySelector('.meme-editor .txt-input')
@@ -127,6 +133,16 @@ function onSwitchTitleToEdit() {
     
     elTxtInput.value = switchTitleToEdit() || currValue
     renderMeme()    
+}
+
+function onSetFillColor(color) {
+    setFillColor(color)
+    renderMeme()
+}
+
+function onSetStrokeColor(color) {
+    setStrokeColor(color)
+    renderMeme()
 }
 
 // Download and share
