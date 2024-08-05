@@ -128,7 +128,7 @@
     }
 
     div.meme-editor {
-        grid-template-columns: 1fr 1.5fr;
+        grid-template-columns: max-content 1.5fr;
         justify-items: unset;
     }
 

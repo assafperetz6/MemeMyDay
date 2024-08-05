@@ -38,8 +38,6 @@ function resizeCanvas() {
 
     gElCanvas.width = elCanvasContainer.clientWidth
     gElCanvas.height = elCanvasContainer.clientHeight
-
-    console.log(elCanvasContainer.clientWidth, elCanvasContainer.clientHeight);
     
     renderMeme()
 }
@@ -56,6 +54,7 @@ function renderMeme() {
 
     drawImg(img.url)
     renderLines()
+    setCurrColors()
 }
 
 function drawImg(imgUrl) {
@@ -100,6 +99,15 @@ function addTxtPlaceholder(lines, selectedLineIdx) {
         gCtx.strokeText('Type something...', x, y)
         gCtx.fillText('Type something...', x, y)
     }
+}
+
+function setCurrColors() {
+    const elStrokeClr = document.querySelector('.stroke-color')
+    const elFillClr = document.querySelector('.fill-color')
+    const { lines, selectedLineIdx } = getMeme()
+    
+    elStrokeClr.value = lines[selectedLineIdx].strokeStyle
+    elFillClr.value = lines[selectedLineIdx].fillStyle
 }
 
 // CRUD
