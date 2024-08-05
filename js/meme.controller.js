@@ -122,12 +122,11 @@ function onRemoveLine() {
 }
 
 function onSwitchTitleToEdit() {
-    const elTxtInput = document.querySelector('.txt-input')
+    const elTxtInput = document.querySelector('.meme-editor .txt-input')
     const currValue = elTxtInput.value
-
+    
     elTxtInput.value = switchTitleToEdit() || currValue
-
-    renderMeme()
+    renderMeme()    
 }
 
 // Download and share
