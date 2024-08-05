@@ -79,38 +79,35 @@ function renderLines() {
 	lines.forEach((line, idx) => renderLine(line, idx === selectedLineIdx))
 }
 
-
-
 function renderLine(line, isSelected) {
-    const { txt, font, strokeStyle, fillStyle, linePos, scale } = line
-    const { x, y } = linePos
-    const { size, family } = font
+	const { txt, font, strokeStyle, fillStyle, linePos, scale } = line
+	const { x, y } = linePos
+	const { size, family } = font
 
-    if (scale) gCtx.scale(scale, scale)
+	gCtx.font = `${size}px ${family}`
+	gCtx.lineWidth = 2
+	gCtx.strokeStyle = strokeStyle
+	gCtx.fillStyle = fillStyle
 
-    gCtx.font = `${size}px ${family}`
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = strokeStyle
-    gCtx.fillStyle = fillStyle
+	if (txt) {
+		gCtx.strokeText(txt, x, y)
+		gCtx.fillText(txt, x, y)
+	} else if (isSelected) {
+		gCtx.strokeText('Type something...', x, y)
+		gCtx.fillText('Type something...', x, y)
+	}
 
-    if (txt) {
-        gCtx.strokeText(txt, x, y)
-        gCtx.fillText(txt, x, y)
-    } else if (isSelected) {
-        gCtx.strokeText('Type something...', x, y)
-        gCtx.fillText('Type something...', x, y)
-    }
+	if (isSelected) {
+        const { width } = gCtx.measureText(txt || 'Type something...')
+        drawRect({x, y, w: width, h: size, pad: 10})
+	}
+}
 
-    if (isSelected) {
-        gCtx.strokeStyle = 'black'
-        gCtx.strokeRect(
-            x - 10,
-            y - 40,
-            gCtx.measureText(txt || 'Type something...').width + 20,
-            60
-        )
-        gCtx.strokeStyle = strokeStyle
-    }
+function drawRect({x, y, w, h, pad = 0, strokeStyle = 'black'}) {
+	const prevStroke = gCtx.strokeStyle
+	gCtx.strokeStyle = strokeStyle
+	gCtx.strokeRect(x - pad, y - h, w + pad * 2, h + pad * 2)
+	gCtx.strokeStyle = prevStroke
 }
 
 function setCurrColors() {
