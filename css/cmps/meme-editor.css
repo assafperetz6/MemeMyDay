@@ -77,6 +77,11 @@
     padding: 0;
 }
 
+.btn.download {
+    display: grid;
+    place-items: center;
+}
+
 .meme-editor .canvas-container {
     border-radius: 20px;
     box-shadow: 0px 0px 10px 2px white;

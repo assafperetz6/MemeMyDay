@@ -31,6 +31,7 @@ svg {
 	max-width: 100%;
 }
 
+a,
 input,
 button,
 textarea,
@@ -44,6 +45,7 @@ select {
 	border-radius: 50px;
 
 	cursor: pointer;
+	background-color: buttonface;
 }
 
 .btn:active {
