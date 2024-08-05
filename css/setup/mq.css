@@ -1,8 +1,5 @@
 @media (max-width: 600px) {
-    .body {
-        grid-template-columns: 1fr;
-    }
-    button.toggle-menu {
+    .btn.toggle-menu {
         display: block;
     }
 
@@ -66,11 +63,31 @@
     div.gallery {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    section.controls .btn {
+        height: 30px;
+        width: 30px;
+
+        font-size: smaller;
+
+    }
 }
 
 
-@media (min-width: 540px) {
-    
+@media (min-width: 640px) {
+    .body {
+        grid-template-columns: minmax(10px, 1fr) minmax(auto, 600px) minmax(10px, 1fr);
+    }
+
+    div.meme-editor {
+        justify-items: center;
+    }
+
+    .meme-editor section.controls {
+
+    }
+
+
 }
 
 @media (min-width: 880px) {
@@ -83,6 +100,23 @@
 
     .gallery-nav > button.btn {
         justify-self: end;
+    }
+
+    div.meme-editor {
+        grid-template-columns: 500px auto;
+    }
+
+    .meme-editor section.controls {
+        grid-template-columns: 80%;
+        grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    }
+
+    .controls .txt-input {
+        grid-column: unset;
+    }
+    section.font-btns {
+        grid-area: unset;
+    }
 }
 
 @media (min-width: 1100px) {
@@ -92,5 +126,13 @@
 
     div.gallery {
         grid-template-columns: repeat(5, 1fr);
+    }
+
+    div.meme-editor {
+        justify-items: unset;
+    }
+
+    section.font-btns {
+        flex-direction: row;
     }
 }

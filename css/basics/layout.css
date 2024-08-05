@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-columns: minmax(10px, 1fr) minmax(auto, 600px) minmax(10px, 1fr);
-    row-gap: 20px;
+    row-gap: 10px;
 }
 
 .full {

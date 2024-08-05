@@ -39,6 +39,7 @@ select {
 }
 
 .btn {
+	padding: 5px 10px;
 	border: solid 2px var(--base-clr);
 	border-radius: 50px;
 

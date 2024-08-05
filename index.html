@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/8d96662ee5.js" crossorigin="anonymous"></script>
 </head>
 <body class="body" onload="onInit()">
     <div class="main-screen" onclick="onToggleMenu()"></div>
@@ -12,7 +13,7 @@
         <h1 class="logo">Meme my day</h1>
 
         <nav class="main-nav">
-            <button class="toggle-menu btn" onclick="onToggleMenu()">☰</button>
+            <button class="toggle-menu btn fa bars-menu" onclick="onToggleMenu()"></button>
             <ul class="flex clean-list">
                 <li>
                     <button class="btn" onclick="toggleEditorGalley()">Gallery</button>
@@ -47,21 +48,27 @@
             <input class="txt-input" type="text" placeholder="Type something..." oninput="onSetLineTxt(value)">
 
             <section class="main-btns">
-                <button onclick="onSwitchTitleToEdit()">switch title</button>
-                <button onclick="onAddNewLine()">add</button>
-                <button onclick="onRemoveLine()">delete</button>
+                <button class="btn fa next-line" onclick="onSwitchTitleToEdit()"></button>
+                <button class="btn fa add" onclick="onAddNewLine()"></button>
+                <button class="btn fa remove" onclick="onRemoveLine()"></button>
             </section>
 
             <section class="font-btns">
-                <button>A+</button>
-                <button>A-</button>
-                <button>align</button>
+                <div class="font-size flex space-evenly">
+                    <button class="btn fa enlarge"></button>
+                    <button class="btn fa shrink"></button>
+                </div>
+                <div class="align flex space-between">
+                    <button class="btn fa align-left"></button>
+                    <button class="btn fa align-center"></button>
+                    <button class="btn fa align-right"></button>
+                </div>
             </section>
 
             <section class="share-btns">
-                <button>save</button>
-                <button>share</button>
-                <button>download</button>
+                <button class="btn fa-solid fa-bookmark"></button>
+                <button class="btn fa-solid fa-share"></button>
+                <button class="btn fa-solid fa-download"></button>
             </section>
         </section>
     </div>

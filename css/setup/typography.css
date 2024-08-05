@@ -1,14 +1,61 @@
 @font-face {
-    font-family: slabo;
-    src: url(../../fonts/Slabo_13px/Slabo13px-Regular.ttf);
+	font-family: slabo;
+	src: url(../../fonts/Slabo_13px/Slabo13px-Regular.ttf);
 }
 
 @font-face {
-    font-family: workSans;
-    src: url(../../fonts/Work_Sans/static/WorkSans-Light.ttf);
+	font-family: workSans;
+	src: url(../../fonts/Work_Sans/static/WorkSans-Light.ttf);
 }
 
 @font-face {
-    font-family: fa;
-    src: url(../../fonts/fa/fa-brands-400.ttf);
+	font-family: fontAwesome;
+	src: url(../../fonts/fa/fa-regular-400.ttf);
+}
+
+.fa::before {
+	font-family: fontAwesome;
+}
+
+.fa.bars-menu::before {
+	content: '\f0c9';
+}
+
+.fa.remove::before {
+	content: '\f1f8';
+}
+
+.fa.add::before {
+	content: '\2b';
+}
+
+.fa.next-line::before {
+	content: '\f363';
+}
+
+.fa.enlarge::before {
+	content: '\f031 \2b';
+}
+.fa.shrink::before {
+	content: '\f031 \f068';
+}
+
+.fa.plus-minus::before {
+	content: '\e43c';
+}
+
+.fa.align-left::before {
+	content: '\f036';
+}
+
+.fa.align-center::before {
+	content: '\f037';
+}
+
+.fa.align-right::before {
+	content: '\f038';
+}
+
+.fa.align-justify::before {
+	content: '\f039';
 }

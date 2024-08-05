@@ -39,6 +39,8 @@ function resizeCanvas() {
     gElCanvas.width = elCanvasContainer.clientWidth
     gElCanvas.height = elCanvasContainer.clientHeight
 
+    console.log(elCanvasContainer.clientWidth, elCanvasContainer.clientHeight);
+    
     renderMeme()
 }
 

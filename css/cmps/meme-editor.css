@@ -2,8 +2,8 @@
     grid-column: 2;
     
     display: grid;
-    grid-template-columns:  500px auto;
-    column-gap: 40px;
+    grid-template-columns: 100%;
+    gap: 20px;
     place-items: space-between;
 
     border: solid 2px var(--primary-1);
@@ -16,10 +16,13 @@
 
 .meme-editor .controls {
     display: grid;
-    grid-template-columns: 80%;
-    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    width: 100%;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
     gap: 10px;
     place-content: center;
+    place-items: center;
 
     padding: 10px;
     border-radius: 20px;
@@ -32,13 +35,46 @@
 }
 
 .controls input {
-    padding: 5px;
+    grid-column: 1 / 4;
+
+    padding: .7em;
     border-radius: 20px;
 }
 
 .controls > section {
     display: flex;
+    height: 100%;
+
     justify-content: space-around;
+    align-items: center;
+
+    padding: 10px;
+    border-radius: 20px;
+    background-color: var(--primary-1);
+}
+
+.controls > section:not(.font-btns) {
+    height: unset;
+    grid-column: span 2;
+}
+
+.font-btns {
+    grid-area: 1 / 4 / 2 / -1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.font-btns > * {
+    gap: 5px;
+}
+
+.controls .btn {
+    height: 45px;
+    width: 45px;
+
+    padding: 0;
 }
 
 .meme-editor .canvas-container {
