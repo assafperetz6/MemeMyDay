@@ -1,4 +1,7 @@
 @media (max-width: 600px) {
+    .body {
+        grid-template-columns: minmax(10px, 1fr) minmax(344px, 600px) minmax(10px, 1fr);
+    }
     .btn.toggle-menu {
         display: block;
     }
