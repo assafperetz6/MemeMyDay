@@ -6,20 +6,28 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="onInit()">
+<body class="body" onload="onInit()">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
     <header class="main-header full flex space-between">
         <h1 class="logo">Meme my day</h1>
 
         <nav class="main-nav">
-            <button class="btn" onclick="toggleEditorGalley()">Gallery</button>
-            <button class="btn">About</button>
+            <button class="toggle-menu btn" onclick="onToggleMenu()">☰</button>
+            <ul class="flex clean-list">
+                <li>
+                    <button class="btn" onclick="toggleEditorGalley()">Gallery</button>
+                </li>
+                <li>
+                    <button class="btn">About</button>
+                </li>
+            </ul>
         </nav>
     </header>
 
     <div class="main-container flex justify-center">
         <section class="gallery-container">
-            <nav class="gallery-nav flex space-between">
-                <input type="text" placeholder="Search">
+            <nav class="gallery-nav">
+                <input class="txt-input" type="text" placeholder="Search">
                 <ul>
                     <li>Funny</li>
                     <li>Weird</li>

@@ -1,0 +1,96 @@
+@media (max-width: 600px) {
+    .body {
+        grid-template-columns: 1fr;
+    }
+    button.toggle-menu {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+
+        position: fixed;
+        top: 0;
+        right: -10px;
+
+        flex-direction: column;
+        height: 100vh;
+
+        transform: translateX(100%);
+        background-color: #292929;
+    }
+
+    body.menu-open .main-nav ul {
+        transform: translateX(0);
+        box-shadow: -9px 0px 20px rgb(0 0 0 / 25%);
+    }
+
+    body.menu-open .main-nav ul::before {
+        content: '.M.';
+        display: grid;
+        place-items: center;
+        height: 2em;
+        width: 2em;
+
+        border: solid 1px var(--base-clr);
+        border-radius: 200px;
+        margin-block: 15px;
+        margin-inline: auto;
+
+        font-family: slabo;
+        font-size: 2.5em;
+        font-weight: 700;
+    }
+
+    body.menu-open ul li {
+        position: relative;
+        top: 120px;
+    }
+
+    body.menu-open .main-nav ul button {
+        height: 60px;
+        width: 120px;
+        border: solid 1px var(--primary-1);
+        border-radius: 0;
+
+        color: var(--base-clr);
+        background-color: var(--primary-2);
+    }
+
+    body.menu-open .main-screen {
+        pointer-events: auto;
+
+        background-color: #272b2683;
+    }
+
+    div.gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (min-width: 540px) {
+    
+}
+
+@media (min-width: 880px) {
+    .body {
+        grid-template-columns: minmax(10px, 1fr) minmax(auto, 800px) minmax(10px, 1fr);
+    }
+    div.gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .gallery-nav > button.btn {
+        justify-self: end;
+}
+
+@media (min-width: 1100px) {
+    .body {
+        grid-template-columns: minmax(40px, 1fr) minmax(auto, 1000px) minmax(40px, 1fr);
+    }
+
+    div.gallery {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

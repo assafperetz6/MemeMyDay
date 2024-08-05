@@ -24,6 +24,12 @@ function setInitCtxPrefs() {
     gCtx.fillStyle = fillStyle
 }
 
+function onToggleMenu() {
+    const elMainMenu = document.querySelector('body')
+
+    elMainMenu.classList.toggle('menu-open')
+}
+
 function resizeCanvas() {
     const elEditor = document.querySelector('.meme-editor')
     if (elEditor.classList.contains('hidden')) return

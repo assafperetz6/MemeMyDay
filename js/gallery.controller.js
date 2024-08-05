@@ -20,4 +20,5 @@ function toggleEditorGalley() {
 
     elGallery.classList.toggle('hidden')
     elEditor.classList.toggle('hidden')
+    onToggleMenu()
 }

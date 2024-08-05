@@ -1,6 +1,6 @@
 body {
     display: grid;
-    grid-template-columns: minmax(10px, 1fr) minmax(auto, 1100px) minmax(10px, 1fr);
+    grid-template-columns: minmax(10px, 1fr) minmax(auto, 600px) minmax(10px, 1fr);
     row-gap: 20px;
 }
 
@@ -15,3 +15,11 @@ body {
     background-color: var(--primary-2);
 }
 
+.main-screen {
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    pointer-events: none;
+
+    transition: background-color 0.6s;
+}

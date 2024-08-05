@@ -7,3 +7,8 @@
     font-family: workSans;
     src: url(../../fonts/Work_Sans/static/WorkSans-Light.ttf);
 }
+
+@font-face {
+    font-family: fa;
+    src: url(../../fonts/fa/fa-brands-400.ttf);
+}
