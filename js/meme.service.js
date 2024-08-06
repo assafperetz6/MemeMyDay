@@ -98,6 +98,8 @@ function changeFontSize(isIncreased) {
 	const { lines, selectedLineIdx } = gMeme
 	
 	isIncreased ? lines[selectedLineIdx].font.size++ : lines[selectedLineIdx].font.size--
+
+	_saveCurrMeme()
 }
 
 function setFillColor(color) {

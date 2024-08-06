@@ -12,9 +12,11 @@ function onInit() {
 
 function addListeners() {
 	const elGallery = document.querySelector('.gallery')
-
-	window.addEventListener('resize', resizeCanvas)
+    
 	elGallery.addEventListener('click', toggleEditorGalley)
+	window.addEventListener('resize', resizeCanvas)
+
+    gElCanvas.addEventListener('mousedown', ev => console.log(ev.offsetX, ev.offsetY))
 }
 
 function setInitCtxPrefs() {
@@ -84,6 +86,7 @@ function renderLine(line, isSelected) {
 	const { x, y } = linePos
 	const { size, family } = font
 
+    
 	gCtx.font = `${size}px ${family}`
 	gCtx.lineWidth = 2
 	gCtx.strokeStyle = strokeStyle

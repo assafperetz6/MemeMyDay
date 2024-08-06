@@ -102,12 +102,19 @@
     }
 
     div.meme-editor {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(max-content, 1.5fr) 1fr;
+    }
+
+    div.canvas-container {
+        margin-block-end: 0;
+        margin-inline-end: 20px;
     }
 
     .meme-editor section.controls {
         grid-template-columns: 80%;
-        grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 2fr 1fr;
+
+        padding: 0;
     }
 
     .controls .txt-input {
@@ -128,7 +135,7 @@
     }
 
     div.meme-editor {
-        grid-template-columns: max-content 1.5fr;
+        grid-template-columns: minmax(max-content, 1.5fr) 1.5fr;
         justify-items: unset;
     }
 
