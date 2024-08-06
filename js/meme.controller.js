@@ -169,9 +169,16 @@ function onSwitchTitleToEdit() {
 }
 
 function onSelectLine(ev) {
-    const { offsetX: x, offsetY: y } = ev
     
+    let { offsetX: x, offsetY: y } = ev
     gMouseState.isDown = true
+
+    if (ev.type === 'touchstart') {
+        const touchPos = getTouchPos(ev)
+        x = touchPos.x
+        y = touchPos.y
+    }
+
     gMouseState.pos = { x, y }
 
     updateTxtInput(selectLine({ x, y }))
@@ -182,15 +189,26 @@ function onMoveLine(ev) {
     if (!gMouseState.isDown) return
     let { offsetX: x, offsetY: y } = ev
     
-    if (ev.type === 'touchemove') {
-        x = ev.touches[0].clientX
-        y = ev.touches[0].clientY
+    if (ev.type === 'touchmove') {
+        const touchPos = getTouchPos(ev)
+        x = touchPos.x
+        y = touchPos.y
     }
-
+    
     moveLine({x, y}, gMouseState.pos)
     gMouseState.pos = { x, y }
 
     renderMeme()
+}
+
+function getTouchPos(ev) {
+    const { scrollX, scrollY } = window
+    const { left, top } = gElCanvas.getBoundingClientRect()
+    const calcPosX = ev.touches[0].clientX - (scrollX + left)
+    const calcPosY = ev.touches[0].clientY - (scrollY + top)
+    const touchPos = { x: calcPosX, y: calcPosY}
+    
+    return touchPos
 }
 
 function onPlaceLine() {

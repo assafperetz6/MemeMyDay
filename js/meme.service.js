@@ -81,7 +81,7 @@ function selectLine(mousePos) {
 function moveLine(currPos, prevPos) {
 	const { lines, selectedLineIdx} = gMeme
 	if (!lines[selectedLineIdx]) return
-
+	
 	const { linePos } = lines[selectedLineIdx]
 	const mouseDistance = { x: currPos.x - prevPos.x, y: currPos.y - prevPos.y }
 
