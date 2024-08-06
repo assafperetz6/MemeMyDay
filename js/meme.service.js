@@ -96,9 +96,8 @@ function removeLine() {
 
 function changeFontSize(isIncreased) {
 	const { lines, selectedLineIdx } = gMeme
-
-	if (isIncreased) lines[selectedLineIdx].scale = 1.1
-	else lines[selectedLineIdx].scale = 1.1
+	
+	isIncreased ? lines[selectedLineIdx].font.size++ : lines[selectedLineIdx].font.size--
 }
 
 function setFillColor(color) {

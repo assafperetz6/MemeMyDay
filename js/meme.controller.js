@@ -80,7 +80,7 @@ function renderLines() {
 }
 
 function renderLine(line, isSelected) {
-	const { txt, font, strokeStyle, fillStyle, linePos, scale } = line
+	const { txt, font, strokeStyle, fillStyle, linePos } = line
 	const { x, y } = linePos
 	const { size, family } = font
 
@@ -154,7 +154,7 @@ function onSwitchTitleToEdit() {
 }
 
 function onChangeFontSize(isIncreased) {
-	changeFontSize(isIncreased)
+    changeFontSize(isIncreased)
 	renderMeme()
 }
 
