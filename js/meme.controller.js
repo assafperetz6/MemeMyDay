@@ -2,6 +2,8 @@
 const gElCanvas = document.querySelector('.meme-editor canvas')
 const gCtx = gElCanvas.getContext('2d')
 
+const gMouseState = { isDown: false, pos: { x: null, y: null } }
+
 function onInit() {
 	renderGallery()
 	addListeners(gElCanvas)
@@ -17,6 +19,8 @@ function addListeners() {
 	window.addEventListener('resize', resizeCanvas)
 
     gElCanvas.addEventListener('mousedown', onSelectLine)
+    gElCanvas.addEventListener('mousemove', onMoveLine)
+    document.addEventListener('mouseup', onPlaceLine)
 }
 
 function setInitCtxPrefs() {
@@ -102,7 +106,7 @@ function renderLine(line, isSelected) {
 
 	if (isSelected) {
         const { width } = gCtx.measureText(txt || 'Type something...')
-        
+
         drawRect({x, y, w: width, h: size, pad: 10})
 	}
 }
@@ -123,13 +127,6 @@ function setCurrColors() {
 
 	elStrokeClr.value = lines[selectedLineIdx]?.strokeStyle || '#000000'
 	elFillClr.value = lines[selectedLineIdx]?.fillStyle || '#ffffff'
-}
-
-function onSelectLine(ev) {
-    const { offsetX: x, offsetY: y } = ev
-
-    updateTxtInput(selectLine({ x, y }))
-    renderMeme()
 }
 
 function updateTxtInput(txt) {
@@ -163,6 +160,30 @@ function onRemoveLine() {
 function onSwitchTitleToEdit() {
 	updateTxtInput(switchTitleToEdit())
 	renderMeme()
+}
+
+function onSelectLine(ev) {
+    const { offsetX: x, offsetY: y } = ev
+
+    gMouseState.isDown = true
+    gMouseState.pos = { x, y }
+
+    updateTxtInput(selectLine({ x, y }))
+    renderMeme()
+}
+
+function onMoveLine(ev) {
+    if (!gMouseState.isDown) return
+    const { offsetX: x, offsetY: y } = ev
+
+    moveLine({x, y}, gMouseState.pos)
+    gMouseState.pos = { x, y }
+    
+    renderMeme()
+}
+
+function onPlaceLine() {
+    gMouseState.isDown = false
 }
 
 function onChangeFontSize(isIncreased) {

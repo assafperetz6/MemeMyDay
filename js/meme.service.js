@@ -78,6 +78,15 @@ function selectLine(mousePos) {
 	if (selectedLineIdx >= 0) return lines[selectedLineIdx].txt
 }
 
+function moveLine(currPos, prevPos) {
+	const { lines, selectedLineIdx} = gMeme
+	const { linePos } = lines[selectedLineIdx]
+	const mouseDistance = { x: currPos.x - prevPos.x, y: currPos.y - prevPos.y }
+
+	linePos.x += mouseDistance.x
+	linePos.y += mouseDistance.y
+}
+
 // CRUD
 
 // CREATE
