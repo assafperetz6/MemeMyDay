@@ -21,6 +21,13 @@ function addListeners() {
     gElCanvas.addEventListener('mousedown', onSelectLine)
     gElCanvas.addEventListener('mousemove', onMoveLine)
     document.addEventListener('mouseup', onPlaceLine)
+
+    gElCanvas.addEventListener('touchstart', onSelectLine)
+    gElCanvas.addEventListener('touchmove', ev => {
+        ev.preventDefault()
+        onMoveLine(ev)
+    })
+    document.addEventListener('touchend', onPlaceLine)
 }
 
 function setInitCtxPrefs() {
@@ -133,7 +140,6 @@ function updateTxtInput(txt) {
     const elTxtInput = document.querySelector('.meme-editor .txt-input')
 
     elTxtInput.value = txt || elTxtInput.value
-    elTxtInput.focus()
 }
 
 // CRUD
@@ -164,7 +170,7 @@ function onSwitchTitleToEdit() {
 
 function onSelectLine(ev) {
     const { offsetX: x, offsetY: y } = ev
-
+    
     gMouseState.isDown = true
     gMouseState.pos = { x, y }
 
@@ -174,11 +180,16 @@ function onSelectLine(ev) {
 
 function onMoveLine(ev) {
     if (!gMouseState.isDown) return
-    const { offsetX: x, offsetY: y } = ev
+    let { offsetX: x, offsetY: y } = ev
+    
+    if (ev.type === 'touchemove') {
+        x = ev.touches[0].clientX
+        y = ev.touches[0].clientY
+    }
 
     moveLine({x, y}, gMouseState.pos)
     gMouseState.pos = { x, y }
-    
+
     renderMeme()
 }
 
