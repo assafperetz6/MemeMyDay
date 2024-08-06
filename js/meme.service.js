@@ -44,13 +44,38 @@ function setMemeSize(size) {
 
 function setLineTxt(txt) {
 	if (gMeme.lines.length < 1) addNewLine()
-	gMeme.lines[gMeme.selectedLineIdx].txt = txt
+
+	const { lines, selectedLineIdx } = gMeme
+
+	lines[selectedLineIdx].txt = txt
 
 	_saveCurrMeme()
 }
 
+function getCurrLineTxt() {
+	const { lines, selectedLineIdx } = gMeme
+	return lines[selectedLineIdx].txt
+}
+
 function getUserPrefs() {
 	return gPrefs
+}
+
+function selectLine(mousePos) {
+	const { lines } = gMeme
+	const selectedLineIdx = lines.findIndex(({ txt, linePos, font }) => {
+		const pad = 10
+		const lineWidth = gCtx.measureText(txt).width
+
+		return  mousePos.x >= linePos.x - pad &&
+				mousePos.x <= linePos.x - pad + lineWidth + pad * 2 &&
+				mousePos.y <= linePos.y + pad * 2 &&
+				mousePos.y >= linePos.y - font.size
+	})
+
+	gMeme.selectedLineIdx = selectedLineIdx
+
+	if (selectedLineIdx >= 0) return lines[selectedLineIdx].txt
 }
 
 // CRUD
@@ -62,12 +87,11 @@ function addNewLine() {
 	if (gMeme.lines >= 1) return
 
 	let line = {
-		txt: '',
+		txt: 'Something',
 		font,
 		strokeStyle,
 		fillStyle,
-		linePos: { x: 50, y: 100 },
-		scale: null,
+		linePos: { x: 50, y: 100 }
 	}
 	gMeme.lines.push(line)
 
@@ -96,7 +120,7 @@ function removeLine() {
 
 function changeFontSize(isIncreased) {
 	const { lines, selectedLineIdx } = gMeme
-	
+
 	isIncreased ? lines[selectedLineIdx].font.size++ : lines[selectedLineIdx].font.size--
 
 	_saveCurrMeme()

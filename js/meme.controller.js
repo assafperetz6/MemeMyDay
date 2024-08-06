@@ -16,7 +16,7 @@ function addListeners() {
 	elGallery.addEventListener('click', toggleEditorGalley)
 	window.addEventListener('resize', resizeCanvas)
 
-    gElCanvas.addEventListener('mousedown', ev => console.log(ev.offsetX, ev.offsetY))
+    gElCanvas.addEventListener('mousedown', onSelectLine)
 }
 
 function setInitCtxPrefs() {
@@ -102,6 +102,7 @@ function renderLine(line, isSelected) {
 
 	if (isSelected) {
         const { width } = gCtx.measureText(txt || 'Type something...')
+        
         drawRect({x, y, w: width, h: size, pad: 10})
 	}
 }
@@ -120,8 +121,22 @@ function setCurrColors() {
 
 	if (lines.length < 1) return
 
-	elStrokeClr.value = lines[selectedLineIdx].strokeStyle
-	elFillClr.value = lines[selectedLineIdx].fillStyle
+	elStrokeClr.value = lines[selectedLineIdx]?.strokeStyle || '#000000'
+	elFillClr.value = lines[selectedLineIdx]?.fillStyle || '#ffffff'
+}
+
+function onSelectLine(ev) {
+    const { offsetX: x, offsetY: y } = ev
+
+    updateTxtInput(selectLine({ x, y }))
+    renderMeme()
+}
+
+function updateTxtInput(txt) {
+    const elTxtInput = document.querySelector('.meme-editor .txt-input')
+
+    elTxtInput.value = txt || elTxtInput.value
+    elTxtInput.focus()
 }
 
 // CRUD
@@ -139,20 +154,14 @@ function onAddNewLine() {
 // DELETE
 
 function onRemoveLine() {
-	const elTxtInput = document.querySelector('.meme-editor .txt-input')
-
-	elTxtInput.value = removeLine() || ''
-	elTxtInput.focus()
+	updateTxtInput(removeLine() || '')
 	renderMeme()
 }
 
 // EDIT
 
 function onSwitchTitleToEdit() {
-	const elTxtInput = document.querySelector('.meme-editor .txt-input')
-	const currValue = elTxtInput.value
-
-	elTxtInput.value = switchTitleToEdit() || currValue
+	updateTxtInput(switchTitleToEdit())
 	renderMeme()
 }
 
