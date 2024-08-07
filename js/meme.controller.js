@@ -213,6 +213,7 @@ function getTouchPos(ev) {
 
 function onPlaceLine() {
     gMouseState.isDown = false
+    gMouseState.pos = { x: null, y: null }
 }
 
 function onChangeFontSize(isIncreased) {
