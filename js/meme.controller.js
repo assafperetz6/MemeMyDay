@@ -236,8 +236,8 @@ function onChangeFont(font) {
     renderMeme()
 }
 
-function onChangeFontSize(isIncreased) {
-    changeFontSize(isIncreased)
+function onChangeFontSize(value) {
+    changeFontSize(value)
     updateCurrFontSize()
 	renderMeme()
 }

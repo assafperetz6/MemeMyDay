@@ -59,8 +59,8 @@ function getCurrLineTxt() {
 
 function getCurrLineSize() {
 	const { lines, selectedLineIdx } = gMeme
-	if(!lines[selectedLineIdx]) return
-
+	
+	if(!lines[selectedLineIdx]) return gPrefs.font.size
 	return lines[selectedLineIdx].font.size
 }
 
@@ -148,11 +148,17 @@ function changeFont(font) {
 	_saveCurrMeme()
 }
 
-function changeFontSize(isIncreased) {
+function changeFontSize(value) {
 	const { lines, selectedLineIdx } = gMeme
-
-	isIncreased ? lines[selectedLineIdx].font.size++ : lines[selectedLineIdx].font.size--
-
+	
+	if (typeof value !== 'boolean') {
+		if (!lines[selectedLineIdx]) gPrefs.font.size = +value
+		else lines[selectedLineIdx].font.size = +value
+	}
+	else {
+		if (!lines[selectedLineIdx]) value ? gPrefs.font.size++ : gPrefs.font.size--
+		else value ? lines[selectedLineIdx].font.size++ : lines[selectedLineIdx].font.size--
+	}
 	_saveCurrMeme()
 }
 
