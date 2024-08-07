@@ -52,26 +52,36 @@
                 <button class="btn fa next-line" onclick="onSwitchTitleToEdit()" aria-hidden="false"></button>
                 <button class="btn fa add" onclick="onAddNewLine()" aria-hidden="false"></button>
                 <button class="btn fa remove" onclick="onRemoveLine()" aria-hidden="false"></button>
-
-                <!-- <div class="font-color-btns">
-                </div> -->
             </section>
             
             <section class="font-btns">
-                <div class="flex space-around">
-                    <button class="btn fa increase" onclick="onChangeFontSize(true)" aria-hidden="false"></button>
-                    <button class="btn fa decrease" onclick="onChangeFontSize(false)" aria-hidden="false"></button>
-                    <button class="btn fa align-left" aria-hidden="false"></button>
-                    <button class="btn fa align-center" aria-hidden="false"></button>
-                    <button class="btn fa align-right" aria-hidden="false"></button>
-                </div>
-                <div class="color-picker flex space-evenly">
+                <!-- <div class="flex space-around"> -->
+                    <section class="font-size-controls">
+                        <button class="fa increase" onclick="onChangeFontSize(true)" aria-hidden="false">+</button>
+                        <input class="txt-input font-size-input" type="text" placeholder="px">
+                        <button class="fa decrease" onclick="onChangeFontSize(false)" aria-hidden="false">-</button>
+                    </section>
+                        <section class="align-btns flex space-around">
+                            <button class="btn fa align-left" aria-hidden="false"></button>
+                            <button class="btn fa align-center" aria-hidden="false"></button>
+                            <button class="btn fa align-right" aria-hidden="false"></button>
+                        </section>
+                        <select class="font-select" name="" id="">
+                            
+                            <option value="arial">Arial</option>
+                            <option value="times new roman">Times new roman</option>
+                            <option value="impact">Impact</option>
+                            <option value="work-sans">Work-Sans</option>
+                            <option value="tahoma">Tahoma</option>
+                        </select>
+                <!-- </div> -->
+                <div class="color-picker flex space-between">
                     <label>
-                        Stroke color
+                        Stroke
                         <input class="stroke-color" type="color" oninput="onSetStrokeColor(value)">
                     </label>
                     <label>
-                        Fill color
+                        Fill
                         <input class="fill-color" type="color" oninput="onSetFillColor(value)">
                     </label>
                 </div>

@@ -33,12 +33,12 @@
 	content: '\f363';
 }
 
-.fa.increase::before {
+/* .fa.increase::before {
 	content: '\f031 \2b';
 }
 .fa.decrease::before {
 	content: '\f031 \f068';
-}
+} */
 
 .fa.plus-minus::before {
 	content: '\e43c';

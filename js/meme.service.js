@@ -57,6 +57,13 @@ function getCurrLineTxt() {
 	return lines[selectedLineIdx].txt
 }
 
+function getCurrLineSize() {
+	const { lines, selectedLineIdx } = gMeme
+	if(!lines[selectedLineIdx]) return
+
+	return lines[selectedLineIdx].font.size
+}
+
 function getUserPrefs() {
 	return gPrefs
 }
