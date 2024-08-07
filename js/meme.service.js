@@ -82,6 +82,8 @@ function selectLine(mousePos) {
 
 	gMeme.selectedLineIdx = selectedLineIdx
 
+	_saveCurrMeme()
+
 	if (selectedLineIdx >= 0) return lines[selectedLineIdx].txt
 }
 
@@ -94,6 +96,8 @@ function moveLine(currPos, prevPos) {
 
 	linePos.x += mouseDistance.x
 	linePos.y += mouseDistance.y
+
+	_saveCurrMeme()
 }
 
 // CRUD
@@ -135,6 +139,14 @@ function removeLine() {
 }
 
 // EDIT
+
+function changeFont(font) {
+	const { lines, selectedLineIdx } = gMeme
+
+	lines[selectedLineIdx].font.family = font
+
+	_saveCurrMeme()
+}
 
 function changeFontSize(isIncreased) {
 	const { lines, selectedLineIdx } = gMeme

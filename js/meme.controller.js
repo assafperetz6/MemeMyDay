@@ -231,6 +231,11 @@ function onPlaceLine() {
     gMouseState.pos = { x: null, y: null }
 }
 
+function onChangeFont(font) {
+    changeFont(font)
+    renderMeme()
+}
+
 function onChangeFontSize(isIncreased) {
     changeFontSize(isIncreased)
     updateCurrFontSize()
