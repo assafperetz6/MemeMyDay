@@ -87,7 +87,7 @@ function selectLine(mousePos) {
 	if (selectedLineIdx >= 0) return lines[selectedLineIdx].txt
 }
 
-function moveLine(currPos, prevPos) {
+function dragLine(currPos, prevPos) {
 	const { lines, selectedLineIdx} = gMeme
 	if (!lines[selectedLineIdx]) return
 	
@@ -97,6 +97,33 @@ function moveLine(currPos, prevPos) {
 	linePos.x += mouseDistance.x
 	linePos.y += mouseDistance.y
 
+	_saveCurrMeme()
+}
+
+function moveLine(ev) {
+	const { lines, selectedLineIdx} = gMeme
+	if (!lines[selectedLineIdx]) return
+	
+	const { linePos } = lines[selectedLineIdx]
+	const step = 5
+
+	switch (ev.key) {
+		case 'ArrowUp':
+			linePos.y -= step
+			break;
+		
+		case 'ArrowDown':
+			linePos.y += step
+			break;
+
+		case 'ArrowRight':
+			linePos.x += step
+			break;
+
+		case 'ArrowLeft':
+			linePos.x -= step
+			break;
+	}
 	_saveCurrMeme()
 }
 
@@ -158,6 +185,7 @@ function alignSelectedLine(alignDir, canvasWidth) {
 			linePos.x = canvasWidth - lineWidth - pad
 			break
 	}
+	_saveCurrMeme()
 }
 
 function changeFont(font) {

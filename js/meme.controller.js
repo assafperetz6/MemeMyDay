@@ -19,15 +19,23 @@ function addListeners() {
 	window.addEventListener('resize', resizeCanvas)
 
     gElCanvas.addEventListener('mousedown', onSelectLine)
-    gElCanvas.addEventListener('mousemove', onMoveLine)
+    gElCanvas.addEventListener('mousemove', onDragLine)
     document.addEventListener('mouseup', onPlaceLine)
 
     gElCanvas.addEventListener('touchstart', onSelectLine)
     gElCanvas.addEventListener('touchmove', ev => {
         ev.preventDefault()
-        onMoveLine(ev)
+        onDragLine(ev)
     })
     document.addEventListener('touchend', onPlaceLine)
+
+    document.addEventListener('keydown', (ev) => {
+        const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
+        if (!arrowKeys.includes(ev.key)) return
+
+        ev.preventDefault()
+        onMoveLine(ev)
+    })
 }
 
 function setInitCtxPrefs() {
@@ -206,7 +214,7 @@ function onSelectLine(ev) {
     renderMeme()
 }
 
-function onMoveLine(ev) {
+function onDragLine(ev) {
     if (!gMouseState.isDown) return
     let { offsetX: x, offsetY: y } = ev
     
@@ -216,7 +224,7 @@ function onMoveLine(ev) {
         y = touchPos.y
     }
     
-    moveLine({x, y}, gMouseState.pos)
+    dragLine({x, y}, gMouseState.pos)
     gMouseState.pos = { x, y }
     renderMeme()
 }
@@ -234,6 +242,11 @@ function getTouchPos(ev) {
 function onPlaceLine() {
     gMouseState.isDown = false
     gMouseState.pos = { x: null, y: null }
+}
+
+function onMoveLine(ev) {
+    moveLine(ev)
+    renderMeme()
 }
 
 function onChangeFont(font) {
