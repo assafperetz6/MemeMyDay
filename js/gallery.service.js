@@ -15,3 +15,7 @@ const gImgs = [
 function getImgs() {
     return gImgs
 }
+
+function getRandImg() {
+    return gImgs[getRandomInt(0, gImgs.length)]
+}

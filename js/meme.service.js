@@ -7,6 +7,17 @@ const gPrefs = {
 	fillStyle: '#ffffff',
 }
 const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
+const gSentences = ['When you realize it’s Monday tomorrow.',
+					'Me trying to adult: fails miserably.',
+					'That moment when you finally understand the joke.',
+					'When you see your crush and forget how to act normal.',
+					'Me: has a plan Life: laughs.',
+					'When you accidentally open the front camera.',
+					'When you’re trying to be healthy but pizza exists.',
+					'When you realize you’ve been talking for 30 minutes and no one was listening.',
+					'When you find out your favorite show got canceled.',
+					'When you’re trying to save money but there’s a sale.'
+				]
 
 function loadMemeToEdit() {
 	gMeme = loadFromStorage('memeToEdit') || {
@@ -127,6 +138,22 @@ function moveLine(ev) {
 	_saveCurrMeme()
 }
 
+function createRandMeme(imgId) {
+	gMeme.selectedImgId = imgId
+	gMeme.selectedLineIdx = 0
+
+	gMeme.lines = [{
+		txt: getRandLine(),
+		strokeStyle: gPrefs.strokeStyle,
+		fillStyle: gPrefs.fillStyle,
+		font: { ...gPrefs.font, size: 20 },
+		linePos: { x: 50, y: 100 }
+	}]
+}
+
+function getRandLine() {
+	return gSentences[getRandomInt(0, gSentences.length)]
+}
 // CRUD
 
 // CREATE

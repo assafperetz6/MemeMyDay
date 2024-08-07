@@ -21,3 +21,13 @@ function toggleEditorGalley() {
     elGallery.classList.toggle('hidden')
     elEditor.classList.toggle('hidden')
 }
+
+function onGenerateRandMeme() {
+    // debugger
+    const { id } = getRandImg()
+
+    setImg(id)
+    createRandMeme(id)
+    renderMeme()
+    toggleEditorGalley()
+}
