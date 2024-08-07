@@ -130,7 +130,7 @@ function renderLine(line, isSelected) {
 function drawRect({x, y, w, h, pad = 0, strokeStyle = 'black'}) {
 	const prevStroke = gCtx.strokeStyle
 	gCtx.strokeStyle = strokeStyle
-	gCtx.strokeRect(x - pad, y - h, w + pad * 2, h + pad * 2)
+	gCtx.strokeRect(x - pad, y - h - pad / 2, w + pad * 2, h + pad * 2)
 	gCtx.strokeStyle = prevStroke
 }
 
@@ -177,6 +177,11 @@ function onRemoveLine() {
 }
 
 // EDIT
+
+function onAlign(alignDir) {
+    alignSelectedLine(alignDir, gElCanvas.clientWidth)
+    renderMeme()
+}
 
 function onSwitchTitleToEdit() {
 	updateTxtInputs(switchTitleToEdit())

@@ -140,6 +140,26 @@ function removeLine() {
 
 // EDIT
 
+function alignSelectedLine(alignDir, canvasWidth) {
+	const { lines, selectedLineIdx } = gMeme
+	const { linePos, txt } = lines[selectedLineIdx]
+	const lineWidth = gCtx.measureText(txt).width
+	const pad = 12
+	switch (alignDir) {
+		case 'left':
+			linePos.x = pad
+			break
+
+		case 'center':
+			linePos.x = canvasWidth / 2 - lineWidth / 2
+			break
+			
+			case 'right':
+			linePos.x = canvasWidth - lineWidth - pad
+			break
+	}
+}
+
 function changeFont(font) {
 	const { lines, selectedLineIdx } = gMeme
 

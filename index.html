@@ -62,9 +62,9 @@
                         <button class="fa decrease" onclick="onChangeFontSize(false)" aria-hidden="false">-</button>
                     </section>
                         <section class="align-btns flex space-around">
-                            <button class="btn fa align-left" aria-hidden="false"></button>
-                            <button class="btn fa align-center" aria-hidden="false"></button>
-                            <button class="btn fa align-right" aria-hidden="false"></button>
+                            <button class="btn fa align-left" onclick="onAlign('left')" aria-hidden="false"></button>
+                            <button class="btn fa align-center" onclick="onAlign('center')" aria-hidden="false"></button>
+                            <button class="btn fa align-right" onclick="onAlign('right')" aria-hidden="false"></button>
                         </section>
                         <select class="font-select" onchange="onChangeFont(value)">
                             
