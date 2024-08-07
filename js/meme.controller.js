@@ -73,10 +73,19 @@ function renderMeme() {
 }
 
 function drawImg(imgUrl) {
-	const img = new Image()
-	img.src = imgUrl
-	gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-	gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+	const elImg = new Image()
+	elImg.src = imgUrl
+
+    if (elImg.complete) {
+        gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    }
+    else {
+        elImg.onload = () => {
+            gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+            gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        }
+    }
 }
 
 function onSetLineTxt(txt) {
@@ -197,7 +206,6 @@ function onMoveLine(ev) {
     
     moveLine({x, y}, gMouseState.pos)
     gMouseState.pos = { x, y }
-
     renderMeme()
 }
 

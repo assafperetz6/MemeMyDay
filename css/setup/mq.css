@@ -2,6 +2,11 @@
     .body {
         grid-template-columns: minmax(5px, 1fr) minmax(auto, 560px) minmax(5px, 1fr);
     }
+
+    .logo:not(.small-screen) {
+        display: none;
+    }
+
     .btn.toggle-menu {
         display: block;
     }
@@ -42,7 +47,7 @@
         font-weight: 700;
     }
 
-    body.menu-open ul li {
+    body.menu-open .main-nav ul li {
         position: relative;
         top: 120px;
     }
@@ -69,6 +74,7 @@
 
     nav.gallery-nav ul {
         justify-self: self-start;
+        margin-inline-end: 10px;
     }
 
     section.controls .btn {
@@ -84,6 +90,10 @@
 @media (min-width: 640px) {
     .body {
         grid-template-columns: minmax(10px, 1fr) minmax(auto, 600px) minmax(10px, 1fr);
+    }
+
+    .logo:first-child {
+        display: none;
     }
 
     nav.gallery-nav {
@@ -107,12 +117,9 @@
     .body {
         grid-template-columns: minmax(10px, 1fr) minmax(auto, 800px) minmax(10px, 1fr);
     }
+
     div.gallery {
         grid-template-columns: repeat(4, 1fr);
-    }
-
-    .gallery-nav > button.btn {
-        justify-self: end;
     }
 
     div.meme-editor {
@@ -151,6 +158,10 @@
     div.meme-editor {
         grid-template-columns: minmax(max-content, 1.5fr) 1.5fr;
         justify-items: unset;
+    }
+
+    .gallery-nav > button.btn {
+        justify-self: end;
     }
 
     section.font-btns {
