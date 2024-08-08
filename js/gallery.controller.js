@@ -14,11 +14,12 @@ function onShowSavedMemes() {
 }
 
 function renderSavedMemes() {
-    const savedMemes = loadSavedMemes()
+    const savedMemes = loadSavedMemes() || []
     const htmlStrs = savedMemes.map(({ memeThumbnail }, idx) => `<img src="${memeThumbnail}" alt="" onclick="onRenderSavedMeme(${idx})"></img>`).join('')
     const elGallery = document.querySelector('.gallery')
 
-    elGallery.innerHTML = htmlStrs
+    elGallery.innerHTML = htmlStrs || '<h2>There are currently no saved memes</h2>'
+
     if (elGallery.classList.contains('hidden')) showGallery()
 }
 
