@@ -1,7 +1,8 @@
 'use strict'
 
 function renderGallery(imgs = getImgs()) {
-	const htmlStrs = imgs
+	const userUploadBtn = '<div class="upload-file-container flex justify-center align-center"><input type="file" id="fileUpload" accept="image/*" / onchange="onUploadFile(this)"></div>'
+	const htmlStrs = userUploadBtn + imgs
 		.map(
 			({ url, id }) =>
 				`<img src="${url}" alt="" onclick="onImgSelect(${id})"></img>`
@@ -99,4 +100,15 @@ function onDeleteMeme(memeIdx) {
 
 	saveToStorage('savedMemes', savedMemes)
 	renderSavedMemes()
+}
+
+function onUploadFile(el) {
+    const img = el.files[0]
+    const reader = new FileReader()
+
+	reader.onload = ev => {
+		drawImg(ev.target.result)
+		showMemeEditor()
+	}
+	reader.readAsDataURL(img)
 }
