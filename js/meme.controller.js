@@ -39,6 +39,21 @@ function addListeners() {
         ev.preventDefault()
         onMoveLine(ev)
     })
+    
+    const elShareBtn = document.querySelector('.share')
+    elShareBtn.addEventListener("click", async () => {
+        const shareData = {
+            title: 'New meme you!',
+            text: 'Look what I`ve just created using Meme My Day!',
+            url: gElCanvas.toDataURL('image/jpeg')
+        }
+        try {
+            await navigator.share(shareData)
+            showUserMsg('Meme shared succesfully!')
+        } catch (err) {
+            showUserMsg(`Error: ${err}`)
+        }
+    })
 }
 
 function setInitCtxPrefs() {

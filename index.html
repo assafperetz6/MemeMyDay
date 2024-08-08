@@ -37,9 +37,11 @@
         <section class="gallery-container">
 
             <nav class="gallery-nav">
-                <section>
+                <section class="filter-container">
                     <label for="search-input"></label>
-                    <input class="txt-input" list="search-bar" name="search-bar" id="search-input" placeholder="Search..." oninput="onFilterGallery(value)">
+                    <input class="txt-input" list="search-bar" 
+                    name="search-bar" id="search-input" placeholder="Search..." oninput="onFilterGallery(value)">
+
                     <datalist id="search-bar">
                       <option value="Baby">
                       <option value="Politics">
@@ -49,11 +51,7 @@
                       </datalist>
                       <button class="clear-search" onclick="onClearSearchBar()">clear</button>
                 </section>
-                <ul>
-                    <li>Funny</li>
-                    <li>Weird</li>
-                    <li>Politician</li>
-                </ul>
+
                 <button class="btn" onclick="onGenerateRandMeme()">I'm flexible</button>
             </nav>
 
@@ -112,7 +110,7 @@
 
             <section class="share-btns">
                 <button class="btn fa-solid fa-bookmark" onclick="onSaveMeme()"></button>
-                <button class="btn fa-solid fa-share"></button>
+                <button class="share btn fa-solid fa-share"></button>
                 <a href="#" class="btn download fa-solid fa-download" onclick="downloadImg(this)" download="my-img.jpg"></a>
             </section>
 

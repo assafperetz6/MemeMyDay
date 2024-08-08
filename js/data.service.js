@@ -24,4 +24,4 @@ const gSentences = [
 	['When you’re trying to save money', 'but there’s a sale.'],
 ]
 
-const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2, animals: 14 }
+const gKeywordSearchCountMap = { politics: 4, funny: 12, cat: 16, baby: 2, animals: 14 }
