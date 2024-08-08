@@ -12,10 +12,16 @@ const gImgs = [
     { id: 9, url: 'meme-imgs/meme-imgs (square)/9.jpg', keywords: ['funny', 'cat'] },
 ]
 
-function getImgs() {
-    return gImgs
-}
+const gSentences = [
+	['When you realize it’s Monday tomorrow.'],
+	['Me trying to adult:', 'fails miserably.'],
+	['That moment when you', 'finally understand the joke.'],
+	['When you see your crush', 'and forget how to act normal.'],
+	['Me: has a plan', 'Life: laughs.'],
+	['When you accidentally', 'open the front camera.'],
+	['When you’re trying to be healthy', 'but pizza exists.'],
+	['When you find out', 'your favorite show got canceled.'],
+	['When you’re trying to save money', 'but there’s a sale.'],
+]
 
-function getRandImg() {
-    return gImgs[getRandomInt(0, gImgs.length)]
-}
+const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2, animals: 14 }
