@@ -34,7 +34,8 @@ function addListeners() {
 
     document.addEventListener('keydown', (ev) => {
         const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
-        if (!arrowKeys.includes(ev.key)) return
+        const elTxtInput = document.querySelector('.meme-editor .txt-input')
+        if (!arrowKeys.includes(ev.key) || document.activeElement === elTxtInput) return
 
         ev.preventDefault()
         onMoveLine(ev)
@@ -42,10 +43,12 @@ function addListeners() {
     
     const elShareBtn = document.querySelector('.share')
     elShareBtn.addEventListener("click", async () => {
+
         const shareData = {
             title: 'New meme you!',
             text: 'Look what I`ve just created using Meme My Day!',
             url: gElCanvas.toDataURL('image/jpeg')
+            
         }
         try {
             await navigator.share(shareData)
