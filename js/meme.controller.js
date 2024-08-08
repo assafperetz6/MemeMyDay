@@ -113,7 +113,7 @@ function renderLine(line, isSelected) {
 	const { txt, font, strokeStyle, fillStyle, linePos } = line
 	const { x, y } = linePos
 	const { size, family } = font
-
+    const { width: canvasWidth } = gElCanvas
     
 	gCtx.font = `${size}px ${family}`
 	gCtx.lineWidth = 2
@@ -121,11 +121,11 @@ function renderLine(line, isSelected) {
 	gCtx.fillStyle = fillStyle
 
 	if (txt) {
-		gCtx.strokeText(txt, x, y)
-		gCtx.fillText(txt, x, y)
+		gCtx.strokeText(txt, x, y, canvasWidth)
+		gCtx.fillText(txt, x, y, canvasWidth)
 	} else if (isSelected) {
-		gCtx.strokeText('Type something...', x, y)
-		gCtx.fillText('Type something...', x, y)
+		gCtx.strokeText('Type something...', x, y, canvasWidth)
+		gCtx.fillText('Type something...', x, y, canvasWidth)
 	}
 
 	if (isSelected) {

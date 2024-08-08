@@ -2,21 +2,21 @@
 let gMeme
 
 const gPrefs = {
-	font: { size: 40, family: 'workSans' },
+	font: { size: 30, family: 'workSans' },
 	strokeStyle: '#0b0a0a',
 	fillStyle: '#ffffff',
 }
 const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
-const gSentences = ['When you realize it’s Monday tomorrow.',
-					'Me trying to adult: fails miserably.',
-					'That moment when you finally understand the joke.',
-					'When you see your crush and forget how to act normal.',
-					'Me: has a plan Life: laughs.',
-					'When you accidentally open the front camera.',
-					'When you’re trying to be healthy but pizza exists.',
-					'When you realize you’ve been talking for 30 minutes and no one was listening.',
-					'When you find out your favorite show got canceled.',
-					'When you’re trying to save money but there’s a sale.'
+const gSentences = [
+					['When you realize it’s Monday tomorrow.'],
+					['Me trying to adult:', 'fails miserably.'],
+					['That moment when you', 'finally understand the joke.'],
+					['When you see your crush', 'and forget how to act normal.'],
+					['Me: has a plan Life:', 'laughs.'],
+					['When you accidentally', 'open the front camera.'],
+					['When you’re trying to be healthy', 'but pizza exists.'],
+					['When you find out', 'your favorite show got canceled.'],
+					['When you’re trying to save money', 'but there’s a sale.']
 				]
 
 function loadMemeToEdit() {
@@ -143,38 +143,36 @@ function moveLine(ev) {
 function createRandMeme(imgId) {
 	gMeme.selectedImgId = imgId
 	gMeme.selectedLineIdx = 0
+	gMeme.lines = []
 
-	gMeme.lines = [{
-		txt: getRandLine(),
-		strokeStyle: gPrefs.strokeStyle,
-		fillStyle: gPrefs.fillStyle,
-		font: { ...gPrefs.font, size: 20 },
-		linePos: { x: 50, y: 100 }
-	}]
+	let line = getRandLine()
+
+	line.forEach(slice => addNewLine(slice))
 }
 
 function getRandLine() {
 	return gSentences[getRandomInt(0, gSentences.length)]
 }
+
 // CRUD
 
 // CREATE
 
-function addNewLine() {
+function addNewLine(txt = 'Something') {
 	const { font, strokeStyle, fillStyle } = gPrefs
 	if (gMeme.lines >= 1) return
 
 	let line = {
-		txt: 'Something',
+		txt,
 		font,
 		strokeStyle,
 		fillStyle,
-		linePos: { x: 50, y: 100 }
+		linePos: { x: 10, y: 100 }
 	}
 	gMeme.lines.push(line)
 
-	if (gMeme.lines.length === 2) line.linePos = { x: 50, y: 300 }
-	else if (gMeme.lines.length > 2) line.linePos = { x: 50, y: 200 }
+	if (gMeme.lines.length === 2) line.linePos = { x: 30, y: 350 }
+	else if (gMeme.lines.length > 2) line.linePos = { x: 30, y: 250 }
 	gMeme.selectedLineIdx = gMeme.lines.length - 1
 
 	_saveCurrMeme()
@@ -263,4 +261,10 @@ function switchTitleToEdit() {
 	if (gMeme.selectedLineIdx >= lines.length) gMeme.selectedLineIdx = 0
 
 	return lines[gMeme.selectedLineIdx].txt
+}
+
+// Save
+
+function saveMeme() {
+	
 }
