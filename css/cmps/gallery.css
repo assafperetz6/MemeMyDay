@@ -42,11 +42,35 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
-.gallery > img {
+.gallery img {
     height: 100%;
     padding: 10px;
 
     border-radius: 20px;
     cursor: pointer;
     object-fit: cover;
+}
+
+.delete-meme {
+    position: absolute;
+
+    height: 1.5rem;
+    width: 1.5rem;
+
+    padding: 5px;
+    margin: 5px 0 0 5px;
+
+    text-align: center;
+    color: var(--primary-1);
+    font-size: 1em;
+    font-weight: 900;
+    line-height: .75;
+
+    opacity: 0;
+
+    transition: 400ms;
+}
+
+.saved-meme-container:hover .delete-meme{
+    opacity: .7;
 }

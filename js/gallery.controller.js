@@ -15,7 +15,12 @@ function onShowSavedMemes() {
 
 function renderSavedMemes() {
     const savedMemes = loadSavedMemes() || []
-    const htmlStrs = savedMemes.map(({ memeThumbnail }, idx) => `<img src="${memeThumbnail}" alt="" onclick="onRenderSavedMeme(${idx})"></img>`).join('')
+    const htmlStrs = savedMemes.map(({ memeThumbnail }, idx) => {
+        return `<div class="saved-meme-container">
+                    <span class="btn delete-meme flex justify-center align-center" onclick="onDeleteMeme(${idx})">X</span>
+                    <img src="${memeThumbnail}" alt="" onclick="onRenderSavedMeme(${idx})"></img>
+                </div>`
+        }).join('')
     const elGallery = document.querySelector('.gallery')
 
     elGallery.innerHTML = htmlStrs || '<h2>There are currently no saved memes</h2>'
@@ -61,4 +66,13 @@ function onGenerateRandMeme() {
     createRandMeme(id)
     renderMeme()
     showMemeEditor()
+}
+
+function onDeleteMeme(memeIdx) {
+    let savedMemes = loadSavedMemes()
+    
+    savedMemes.splice(memeIdx, 1)
+
+    saveToStorage('savedMemes', savedMemes)
+    renderSavedMemes()
 }
