@@ -5,17 +5,21 @@
 
 .gallery-nav {
     display: grid;
-    grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr;
     grid-auto-flow: column;
     row-gap: 10px;
 
+    align-items: center;
+
     margin-block-end: 10px;
 }
 
+.filter-container {
+    grid-column: 1 / -1;
+    width: content;
+}
 
 .gallery-nav .txt-input {
-    grid-column: 1 / -1;
     padding-inline-start: 10px;
     border-radius: 10px;
 }
