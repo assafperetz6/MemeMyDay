@@ -88,7 +88,7 @@ function selectLine(mousePos) {
 	const { lines } = gMeme
 	const selectedLineIdx = lines.findIndex(({ txt, linePos, font }) => {
 		const pad = 10
-		const lineWidth = gCtx.measureText(txt).width
+		const lineWidth = getLineWidth(txt, font)
 
 		return (
 			mousePos.x >= linePos.x - pad &&
@@ -160,6 +160,17 @@ function getRandLine() {
 	return gSentences[getRandomInt(0, gSentences.length)]
 }
 
+function getLineWidth(txt, font) {
+	const { size, family } = font
+	const prevFont = gCtx.font
+	
+	gCtx.font = `${size}px ${family}`
+	const lineWidth = gCtx.measureText(txt).width
+	
+	gCtx.font = prevFont
+	return lineWidth
+}
+
 // CRUD
 
 // CREATE
@@ -204,8 +215,8 @@ function removeLine() {
 
 function alignSelectedLine(alignDir, canvasWidth) {
 	const { lines, selectedLineIdx } = gMeme
-	const { linePos, txt } = lines[selectedLineIdx]
-	const lineWidth = gCtx.measureText(txt).width
+	const { linePos, txt, font } = lines[selectedLineIdx]
+	const lineWidth = getLineWidth(txt, font)
 	const pad = 12
 	switch (alignDir) {
 		case 'left':
