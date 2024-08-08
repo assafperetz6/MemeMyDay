@@ -33,9 +33,12 @@
     </header>
 
     <div class="main-container flex justify-center">
+
         <section class="gallery-container">
+
             <nav class="gallery-nav">
                 <input class="txt-input" type="text" placeholder="Search">
+                
                 <ul>
                     <li>Funny</li>
                     <li>Weird</li>
@@ -43,14 +46,17 @@
                 </ul>
                 <button class="btn" onclick="onGenerateRandMeme()">I'm flexible</button>
             </nav>
+
             <div class="gallery"></div>
         </section>
+
     </div>
 
     <div class="meme-editor hidden">
         <div class="canvas-container flex">
             <canvas height="500" width="500"></canvas>
         </div>
+
         <section class="controls">
             <input class="txt-input" type="text" placeholder="Type something..." oninput="onSetLineTxt(value)">
 
@@ -61,17 +67,18 @@
             </section>
             
             <section class="font-btns">
-                <!-- <div class="flex space-around"> -->
                     <section class="font-size-controls">
                         <button class="fa increase" onclick="onChangeFontSize(true)" aria-hidden="false">+</button>
                         <input class="txt-input font-size-input" type="text" placeholder="px" onchange="onChangeFontSize(value)">
                         <button class="fa decrease" onclick="onChangeFontSize(false)" aria-hidden="false">-</button>
                     </section>
+
                         <section class="align-btns flex space-around">
                             <button class="btn fa align-left" onclick="onAlign('left')" aria-hidden="false"></button>
                             <button class="btn fa align-center" onclick="onAlign('center')" aria-hidden="false"></button>
                             <button class="btn fa align-right" onclick="onAlign('right')" aria-hidden="false"></button>
                         </section>
+
                         <select class="font-select" onchange="onChangeFont(value)">
                             
                             <option value="arial">Arial</option>
@@ -80,7 +87,7 @@
                             <option value="work-sans">Work-Sans</option>
                             <option value="tahoma">Tahoma</option>
                         </select>
-                <!-- </div> -->
+
                 <div class="color-picker flex space-between">
                     <label>
                         Stroke
@@ -98,6 +105,7 @@
                 <button class="btn fa-solid fa-share"></button>
                 <a href="#" class="btn download fa-solid fa-download" onclick="downloadImg(this)" download="my-img.jpg"></a>
             </section>
+
         </section>
     </div>
     <script src="js/utils.service.js"></script>

@@ -2,7 +2,7 @@
 let gMeme
 
 const gPrefs = {
-	font: { size: 30, family: 'workSans' },
+	font: { size: 30, family: 'impact' },
 	strokeStyle: '#0b0a0a',
 	fillStyle: '#ffffff',
 }
@@ -166,11 +166,13 @@ function getRandLine() {
 
 function addNewLine(txt = 'Something') {
 	const { font, strokeStyle, fillStyle } = gPrefs
+	const { size, family } = font
+
 	if (gMeme.lines >= 1) return
 
 	let line = {
 		txt,
-		font,
+		font: { size, family },
 		strokeStyle,
 		fillStyle,
 		linePos: { x: 10, y: 100 },
@@ -235,7 +237,8 @@ function changeFontSize(value) {
 	if (typeof value !== 'boolean') {
 		if (!lines[selectedLineIdx]) gPrefs.font.size = +value
 		else lines[selectedLineIdx].font.size = +value
-	} else {
+	}
+	else {
 		if (!lines[selectedLineIdx]) value ? gPrefs.font.size++ : gPrefs.font.size--
 		else
 			value
