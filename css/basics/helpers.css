@@ -18,6 +18,10 @@
     justify-content: space-around;
 }
 
+.flex-align-center {
+    align-items: center;
+}
+
 .hidden {
     display: none !important;
 }

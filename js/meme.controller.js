@@ -285,5 +285,20 @@ function downloadImg(elLink) {
 
 function onSaveMeme() {
     const thumbnail = gElCanvas.toDataURL('image/png')
+
     saveMeme(thumbnail)
+    showUserMsg()
+}
+
+function showUserMsg(msg = 'Meme saved') {
+    const elUserMsg = document.querySelector('.user-msg')
+
+    elUserMsg.innerHTML = msg
+
+
+    elUserMsg.style.visibility = 'visible'
+    elUserMsg.style.opacity = 1
+    
+    setTimeout(() => elUserMsg.style.opacity = 0, 1500)
+    setTimeout(() => elUserMsg.style.visibility = 'hidden', 2000)
 }
