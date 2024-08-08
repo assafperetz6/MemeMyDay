@@ -8,25 +8,29 @@ const gPrefs = {
 }
 const gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 const gSentences = [
-					['When you realize it’s Monday tomorrow.'],
-					['Me trying to adult:', 'fails miserably.'],
-					['That moment when you', 'finally understand the joke.'],
-					['When you see your crush', 'and forget how to act normal.'],
-					['Me: has a plan Life:', 'laughs.'],
-					['When you accidentally', 'open the front camera.'],
-					['When you’re trying to be healthy', 'but pizza exists.'],
-					['When you find out', 'your favorite show got canceled.'],
-					['When you’re trying to save money', 'but there’s a sale.']
-				]
+	['When you realize it’s Monday tomorrow.'],
+	['Me trying to adult:', 'fails miserably.'],
+	['That moment when you', 'finally understand the joke.'],
+	['When you see your crush', 'and forget how to act normal.'],
+	['Me: has a plan', 'Life: laughs.'],
+	['When you accidentally', 'open the front camera.'],
+	['When you’re trying to be healthy', 'but pizza exists.'],
+	['When you find out', 'your favorite show got canceled.'],
+	['When you’re trying to save money', 'but there’s a sale.'],
+]
 
-function loadMemeToEdit() {
-	gMeme = loadFromStorage('memeToEdit') || {
+function loadMemeToEdit(savedMeme) {
+	gMeme = savedMeme || loadFromStorage('memeToEdit') || createNewMeme()
+	_saveCurrMeme()
+}
+
+function createNewMeme() {
+	gMeme = {
 		selectedImgId: 2,
 		selectedLineIdx: 0,
 		lines: [],
 		size: {},
 	}
-	_saveCurrMeme()
 }
 
 function _saveCurrMeme() {
@@ -71,8 +75,8 @@ function getCurrLineTxt() {
 
 function getCurrLineSize() {
 	const { lines, selectedLineIdx } = gMeme
-	
-	if(!lines[selectedLineIdx]) return gPrefs.font.size
+
+	if (!lines[selectedLineIdx]) return gPrefs.font.size
 	return lines[selectedLineIdx].font.size
 }
 
@@ -86,10 +90,12 @@ function selectLine(mousePos) {
 		const pad = 10
 		const lineWidth = gCtx.measureText(txt).width
 
-		return  mousePos.x >= linePos.x - pad &&
-				mousePos.x <= linePos.x - pad + lineWidth + pad * 2 &&
-				mousePos.y <= linePos.y + pad * 2 &&
-				mousePos.y >= linePos.y - font.size
+		return (
+			mousePos.x >= linePos.x - pad &&
+			mousePos.x <= linePos.x - pad + lineWidth + pad * 2 &&
+			mousePos.y <= linePos.y + pad * 2 &&
+			mousePos.y >= linePos.y - font.size
+		)
 	})
 
 	gMeme.selectedLineIdx = selectedLineIdx
@@ -101,9 +107,9 @@ function selectLine(mousePos) {
 }
 
 function dragLine(currPos, prevPos) {
-	const { lines, selectedLineIdx} = gMeme
+	const { lines, selectedLineIdx } = gMeme
 	if (!lines[selectedLineIdx]) return
-	
+
 	const { linePos } = lines[selectedLineIdx]
 	const mouseDistance = { x: currPos.x - prevPos.x, y: currPos.y - prevPos.y }
 
@@ -114,28 +120,28 @@ function dragLine(currPos, prevPos) {
 }
 
 function moveLine(ev) {
-	const { lines, selectedLineIdx} = gMeme
+	const { lines, selectedLineIdx } = gMeme
 	if (!lines[selectedLineIdx]) return
-	
+
 	const { linePos } = lines[selectedLineIdx]
 	const step = 5
 
 	switch (ev.key) {
 		case 'ArrowUp':
 			linePos.y -= step
-			break;
-		
+			break
+
 		case 'ArrowDown':
 			linePos.y += step
-			break;
+			break
 
 		case 'ArrowRight':
 			linePos.x += step
-			break;
+			break
 
 		case 'ArrowLeft':
 			linePos.x -= step
-			break;
+			break
 	}
 	_saveCurrMeme()
 }
@@ -147,7 +153,7 @@ function createRandMeme(imgId) {
 
 	let line = getRandLine()
 
-	line.forEach(slice => addNewLine(slice))
+	line.forEach((slice) => addNewLine(slice))
 }
 
 function getRandLine() {
@@ -167,7 +173,7 @@ function addNewLine(txt = 'Something') {
 		font,
 		strokeStyle,
 		fillStyle,
-		linePos: { x: 10, y: 100 }
+		linePos: { x: 10, y: 100 },
 	}
 	gMeme.lines.push(line)
 
@@ -207,8 +213,8 @@ function alignSelectedLine(alignDir, canvasWidth) {
 		case 'center':
 			linePos.x = canvasWidth / 2 - lineWidth / 2
 			break
-			
-			case 'right':
+
+		case 'right':
 			linePos.x = canvasWidth - lineWidth - pad
 			break
 	}
@@ -225,14 +231,16 @@ function changeFont(font) {
 
 function changeFontSize(value) {
 	const { lines, selectedLineIdx } = gMeme
-	
+
 	if (typeof value !== 'boolean') {
 		if (!lines[selectedLineIdx]) gPrefs.font.size = +value
 		else lines[selectedLineIdx].font.size = +value
-	}
-	else {
+	} else {
 		if (!lines[selectedLineIdx]) value ? gPrefs.font.size++ : gPrefs.font.size--
-		else value ? lines[selectedLineIdx].font.size++ : lines[selectedLineIdx].font.size--
+		else
+			value
+				? lines[selectedLineIdx].font.size++
+				: lines[selectedLineIdx].font.size--
 	}
 	_saveCurrMeme()
 }
@@ -261,10 +269,4 @@ function switchTitleToEdit() {
 	if (gMeme.selectedLineIdx >= lines.length) gMeme.selectedLineIdx = 0
 
 	return lines[gMeme.selectedLineIdx].txt
-}
-
-// Save
-
-function saveMeme() {
-	
 }

@@ -17,10 +17,16 @@
             <button class="toggle-menu btn fa bars-menu" onclick="onToggleMenu()"></button>
             <ul class="flex clean-list">
                 <li>
-                    <button class="btn" onclick="toggleEditorGalley()">Gallery</button>
+                    <button class="btn" onclick="showGallery()">Gallery</button>
                 </li>
                 <li>
                     <button class="btn">About</button>
+                </li>
+                <li>
+                    <button class="btn" onclick="onShowSavedMemes()">Saved Memes</button>
+                </li>
+                <li>
+                    <button class="btn" onclick="showMemeEditor()">Editor</button>
                 </li>
             </ul>
         </nav>
@@ -88,7 +94,7 @@
             </section>
 
             <section class="share-btns">
-                <button class="btn fa-solid fa-bookmark"></button>
+                <button class="btn fa-solid fa-bookmark" onclick="onSaveMeme()"></button>
                 <button class="btn fa-solid fa-share"></button>
                 <a href="#" class="btn download fa-solid fa-download" onclick="downloadImg(this)" download="my-img.jpg"></a>
             </section>

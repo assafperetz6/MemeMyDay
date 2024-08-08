@@ -15,7 +15,10 @@ function onInit() {
 function addListeners() {
 	const elGallery = document.querySelector('.gallery')
     
-	elGallery.addEventListener('click', toggleEditorGalley)
+	elGallery.addEventListener('click', ev => {
+        if (ev.target.tagName == 'IMG') showMemeEditor()
+    })
+
 	window.addEventListener('resize', resizeCanvas)
 
     gElCanvas.addEventListener('mousedown', onSelectLine)
@@ -92,6 +95,7 @@ function drawImg(imgUrl) {
         elImg.onload = () => {
             gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
             gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+            renderMeme()
         }
     }
 }
@@ -272,9 +276,14 @@ function onSetStrokeColor(color) {
 
 //_____________________________
 
-// Download and share
+// Save, Download and share
 
 function downloadImg(elLink) {
 	const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
 	elLink.href = imgContent
+}
+
+function onSaveMeme() {
+    const thumbnail = gElCanvas.toDataURL('image/png')
+    saveMeme(thumbnail)
 }
