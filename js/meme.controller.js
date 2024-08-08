@@ -153,10 +153,10 @@ function setCurrColors() {
 	elFillClr.value = lines[selectedLineIdx]?.fillStyle || '#ffffff'
 }
 
-function updateTxtInputs(txt) {
+function updateTxtInput(txt) {
     const elTxtInput = document.querySelector('.meme-editor .txt-input')
 
-    elTxtInput.value = txt || elTxtInput.value
+    elTxtInput.value = txt || ''
 }
 
 function updateCurrFontSize() {
@@ -180,7 +180,7 @@ function onAddNewLine() {
 // DELETE
 
 function onRemoveLine() {
-	updateTxtInputs(removeLine() || '')
+	updateTxtInput(removeLine() || '')
 	renderMeme()
 }
 
@@ -192,7 +192,7 @@ function onAlign(alignDir) {
 }
 
 function onSwitchTitleToEdit() {
-	updateTxtInputs(switchTitleToEdit())
+	updateTxtInput(switchTitleToEdit())
 	renderMeme()
 }
 
@@ -209,7 +209,7 @@ function onSelectLine(ev) {
 
     gMouseState.pos = { x, y }
 
-    updateTxtInputs(selectLine({ x, y }))
+    updateTxtInput(selectLine({ x, y }))
     updateCurrFontSize()
     renderMeme()
 }

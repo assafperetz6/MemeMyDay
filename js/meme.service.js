@@ -54,11 +54,12 @@ function setMemeSize(size) {
 }
 
 function setLineTxt(txt) {
-	if (gMeme.lines.length < 1) addNewLine()
+	if (gMeme.lines.length < 1 || gMeme.selectedLineIdx < 0) addNewLine()
 
 	const { lines, selectedLineIdx } = gMeme
 
-	lines[selectedLineIdx].txt = txt
+	if (selectedLineIdx < 0) lines.at(-1).txt = txt
+	else lines[selectedLineIdx].txt = txt
 
 	_saveCurrMeme()
 }
@@ -96,6 +97,7 @@ function selectLine(mousePos) {
 	_saveCurrMeme()
 
 	if (selectedLineIdx >= 0) return lines[selectedLineIdx].txt
+	else return null
 }
 
 function dragLine(currPos, prevPos) {
