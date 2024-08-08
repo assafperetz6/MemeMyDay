@@ -37,8 +37,18 @@
         <section class="gallery-container">
 
             <nav class="gallery-nav">
-                <input class="txt-input" type="text" placeholder="Search">
-
+                <section>
+                    <label for="search-input"></label>
+                    <input class="txt-input" list="search-bar" name="search-bar" id="search-input" placeholder="Search..." oninput="onFilterGallery(value)">
+                    <datalist id="search-bar">
+                      <option value="Baby">
+                      <option value="Politics">
+                      <option value="Animals">
+                      <option value="Cat">
+                      <option value="Dog">
+                      </datalist>
+                      <button class="clear-search" onclick="onClearSearchBar()">clear</button>
+                </section>
                 <ul>
                     <li>Funny</li>
                     <li>Weird</li>
