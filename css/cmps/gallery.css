@@ -55,14 +55,27 @@
 }
 
 .upload-file-container svg {
-    margin-block-end: 10px;
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    z-index: 1;
+
+    transition: 450ms;
 }
 .upload-file-container input {
-    position: absolute;
-    bottom: 10px;
+    height: 100%;
+    width: 100%;
 
-    align-self: flex-start;
     font-size: .75rem;
+
+    cursor: pointer;
+    z-index: 10;
+}
+
+.upload-file-container:hover svg {
+    fill: var(--base-clr);
 }
 
 .gallery img {
@@ -72,6 +85,12 @@
     border-radius: 20px;
     cursor: pointer;
     object-fit: cover;
+
+    transition: scale 450ms;
+}
+
+.gallery img:hover {
+    scale: 1.1;
 }
 
 .delete-meme {
