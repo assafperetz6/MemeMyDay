@@ -45,14 +45,12 @@ function addListeners() {
     const elShareBtn = document.querySelector('.share')
     elShareBtn.addEventListener("click", async () => {
 
-        const shareData = {
-            title: 'New meme you!',
-            text: 'Look what I`ve just created using Meme My Day!',
-            url: gElCanvas.toDataURL('image/jpeg')
-            
-        }
         try {
-            await navigator.share(shareData)
+            await navigator.share({
+                title: 'test',
+                text: 'This is a test share',
+                url: 'https://www.google.com/'
+            })
             showUserMsg('Meme shared succesfully!')
         } catch (err) {
             showUserMsg(`Error: ${err}`)

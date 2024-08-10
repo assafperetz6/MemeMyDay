@@ -80,10 +80,7 @@ function isHoverTitle(mousePos) {
 	const { lines } = gMeme
 	const hoveredTitle = lines.find(line => compareMousePosToTitle(mousePos, line))
 
-	// console.log(hoveredTitle)
-
 	return hoveredTitle
-	
 }
 
 function selectLine(mousePos) {
