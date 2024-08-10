@@ -20,7 +20,6 @@ function addListeners() {
     })
 
 	window.addEventListener('resize', resizeCanvas)
-	// window.addEventListener('scroll', resizeCanvas)
 
     gElCanvas.addEventListener('mousemove', onHoverOverTitle)
     gElCanvas.addEventListener('mousedown', onSelectLine)

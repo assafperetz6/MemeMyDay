@@ -10,8 +10,14 @@
 
 @font-face {
 	font-family: fontAwesome;
-	src: url(../../fonts/fa/fa-regular-400.ttf);
+	src: url(../../fonts/fa/fa-solid-900.ttf);
 }
+
+.fa::before {
+	display: inline-block;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+  }
 
 .fa::before {
 	font-family: fontAwesome;
@@ -58,4 +64,16 @@
 
 .fa.align-justify::before {
 	content: '\f039';
+}
+
+.fa.bookmark::before {
+	content: '\f02e';
+}
+
+.fa.share::before {
+	content: '\f064';
+}
+
+.fa.download::before {
+	content: '\f019';
 }
