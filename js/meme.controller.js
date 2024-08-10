@@ -41,26 +41,11 @@ function addListeners() {
         ev.preventDefault()
         onMoveLine(ev)
     })
-    
-    const elShareBtn = document.querySelector('.share')
-    elShareBtn.addEventListener("click", async () => {
-        const dataUrl = gElCanvas.toDataURL('image/jpeg')
-        const response = await fetch(dataUrl)
-        const blob = await response.blob()
-        const file = new File([blob], 'meme.jpg', { type: 'image/jpeg' })
 
-        try {
-            await navigator.share({
-                title: 'New Meme For you!',
-                text: 'Look What I`ve made using Meme My Day: ',
-                files: [file]
-            })
-            showUserMsg('Meme shared succesfully!')
-        } catch (err) {
-            showUserMsg(`Error: ${err}`)
-        }
-    })
+    const elShareBtn = document.querySelector('.share')
+    elShareBtn.addEventListener("click", onShareImg)
 }
+    
 
 function setInitCtxPrefs() {
 	const { font, strokeStyle, fillStyle } = getUserPrefs()
@@ -330,4 +315,22 @@ function showUserMsg(msg = 'Meme saved') {
     
     setTimeout(() => elUserMsg.style.opacity = 0, 1500)
     setTimeout(() => elUserMsg.style.visibility = 'hidden', 2000)
+}
+
+async function onShareImg() {
+    const dataUrl = gElCanvas.toDataURL('image/jpeg')
+    const response = await fetch(dataUrl)
+    const blob = await response.blob()
+    const file = new File([blob], 'meme.jpg', { type: 'image/jpeg' })
+
+    try {
+        await navigator.share({
+            title: 'New Meme For you!',
+            text: 'Look What I`ve made using Meme My Day: ',
+            files: [file]
+        })
+        showUserMsg('Meme shared succesfully!')
+    } catch (err) {
+        showUserMsg(`Error: ${err}`)
+    }
 }
