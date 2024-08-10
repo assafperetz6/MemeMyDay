@@ -33,10 +33,6 @@ function getMemeImg() {
 	return gImgs.find(({ id }) => id === gMeme.selectedImgId)
 }
 
-function getImgs() {
-    return gImgs
-}
-
 function getRandImg() {
     return gImgs[getRandomInt(0, gImgs.length)]
 }

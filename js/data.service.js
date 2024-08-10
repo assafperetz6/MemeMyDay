@@ -1,16 +1,6 @@
 'use strict'
 
-const gImgs = [
-    { id: 1, url: 'meme-imgs/meme-imgs (square)/1.jpg', keywords: ['politics', 'trump'] },
-    { id: 2, url: 'meme-imgs/meme-imgs (square)/2.jpg', keywords: ['dog', 'animals'] },
-    { id: 3, url: 'meme-imgs/meme-imgs (various aspect ratios)/drevil.jpg', keywords: ['funny', 'pop culture'] },
-    { id: 4, url: 'meme-imgs/meme-imgs (square)/4.jpg', keywords: ['cute', 'cat'] },
-    { id: 5, url: 'meme-imgs/meme-imgs (square)/5.jpg', keywords: ['baby', 'success'] },
-    { id: 6, url: 'meme-imgs/meme-imgs (square)/6.jpg', keywords: ['funny', 'history'] },
-    { id: 7, url: 'meme-imgs/meme-imgs (square)/7.jpg', keywords: ['funny', 'baby', 'surprising'] },
-    { id: 8, url: 'meme-imgs/meme-imgs (square)/8.jpg', keywords: ['pop culture', 'quirky'] },
-    { id: 9, url: 'meme-imgs/meme-imgs (square)/9.jpg', keywords: ['funny', 'baby'] },
-]
+let gImgs
 
 const gSentences = [
 	['When you realize it’s Monday tomorrow.'],
@@ -25,3 +15,19 @@ const gSentences = [
 ]
 
 const gKeywordSearchCountMap = { politics: 4, funny: 12, cat: 16, baby: 2, animals: 14 }
+
+function getImgs() {
+	gImgs = loadFromStorage('gImgs') || [
+    { id: 1, url: 'meme-imgs/meme-imgs (square)/1.jpg', keywords: ['politics', 'trump'] },
+    { id: 2, url: 'meme-imgs/meme-imgs (square)/2.jpg', keywords: ['dog', 'animals'] },
+    { id: 3, url: 'meme-imgs/meme-imgs (various aspect ratios)/drevil.jpg', keywords: ['funny', 'pop culture'] },
+    { id: 4, url: 'meme-imgs/meme-imgs (square)/4.jpg', keywords: ['cute', 'cat'] },
+    { id: 5, url: 'meme-imgs/meme-imgs (square)/5.jpg', keywords: ['baby', 'success'] },
+    { id: 6, url: 'meme-imgs/meme-imgs (square)/6.jpg', keywords: ['funny', 'history'] },
+    { id: 7, url: 'meme-imgs/meme-imgs (square)/7.jpg', keywords: ['funny', 'baby', 'surprising'] },
+    { id: 8, url: 'meme-imgs/meme-imgs (square)/8.jpg', keywords: ['pop culture', 'quirky'] },
+    { id: 9, url: 'meme-imgs/meme-imgs (square)/9.jpg', keywords: ['funny', 'baby'] }
+    ]
+
+    return gImgs
+}
