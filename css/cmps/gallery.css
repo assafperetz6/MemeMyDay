@@ -47,6 +47,24 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.upload-file-container {
+    position: relative;
+    
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-file-container svg {
+    margin-block-end: 10px;
+}
+.upload-file-container input {
+    position: absolute;
+    bottom: 10px;
+
+    align-self: flex-start;
+    font-size: .75rem;
+}
+
 .gallery img {
     height: 100%;
     padding: 10px;
