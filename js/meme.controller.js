@@ -20,6 +20,7 @@ function addListeners() {
     })
 
 	window.addEventListener('resize', resizeCanvas)
+	// window.addEventListener('scroll', resizeCanvas)
 
     gElCanvas.addEventListener('mousemove', onHoverOverTitle)
     gElCanvas.addEventListener('mousedown', onSelectLine)
@@ -250,8 +251,8 @@ function onDragLine(ev) {
 function getTouchPos(ev) {
     const { scrollX, scrollY } = window
     const { left, top } = gElCanvas.getBoundingClientRect()
-    const calcPosX = ev.touches[0].clientX - (scrollX + left)
-    const calcPosY = ev.touches[0].clientY - (scrollY + top)
+    const calcPosX = ev.touches[0].clientX - (screenX + left)
+    const calcPosY = ev.touches[0].clientY - (screenY + top)
     const touchPos = { x: calcPosX, y: calcPosY}
     
     return touchPos
