@@ -70,22 +70,26 @@ function onClearSearchBar() {
 }
 
 function showGallery(isSavedMemes) {
+	const elBody = document.querySelector('.body')
 	const elGallery = document.querySelector('.gallery-container')
 	const elEditor = document.querySelector('.meme-editor')
 
 	if (!isSavedMemes) renderGallery()
+	if (elBody.classList.contains('menu-open')) elBody.classList.remove('menu-open')
 
 	elGallery.classList.remove('hidden')
 	elEditor.classList.add('hidden')
 }
 
 function showMemeEditor() {
+	const elBody = document.querySelector('.body')
 	const elGallery = document.querySelector('.gallery-container')
 	const elEditor = document.querySelector('.meme-editor')
 
 	elEditor.classList.remove('hidden')
 	elGallery.classList.add('hidden')
 
+	if (elBody.classList.contains('menu-open')) elBody.classList.remove('menu-open')
 	resizeCanvas()
 }
 
