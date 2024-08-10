@@ -41,11 +41,17 @@ select {
 
 .btn {
 	padding: 5px 10px;
-	border: solid 2px var(--base-clr);
+	border: solid 2px var(--primary-1);
 	border-radius: 50px;
 
 	cursor: pointer;
-	background-color: buttonface;
+	background-color: var(--base-clr);
+
+	transition: 300ms;
+}
+
+.btn:hover {
+	background-color: var(--btn-hover-clr);
 }
 
 .btn:active {
