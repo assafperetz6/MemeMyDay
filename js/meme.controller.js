@@ -82,7 +82,7 @@ function resizeCanvas() {
 
 	gElCanvas.width = elCanvasContainer.clientWidth
 	gElCanvas.height = elCanvasContainer.clientHeight
-
+    
 	renderMeme()
 }
 
