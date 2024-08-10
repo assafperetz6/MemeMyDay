@@ -44,14 +44,16 @@ function addListeners() {
     
     const elShareBtn = document.querySelector('.share')
     elShareBtn.addEventListener("click", async () => {
-        const imgToShare = new Image
-        imgToShare.src = gElCanvas.toDataURL()
+        const dataUrl = gElCanvas.toDataURL('image/jpeg')
+        const response = await fetch(dataUrl)
+        const blob = await response.blob()
+        const file = new File([blob], 'meme.jpg', { type: 'image/jpeg' })
 
         try {
             await navigator.share({
                 title: 'New Meme For you!',
                 text: 'Look What I`ve made using Meme My Day: ',
-                url: imgToShare
+                files: [file]
             })
             showUserMsg('Meme shared succesfully!')
         } catch (err) {
