@@ -45,7 +45,7 @@ function addListeners() {
     const elShareBtn = document.querySelector('.share')
     elShareBtn.addEventListener("click", async () => {
         const imgDataURL = gElCanvas.toDataURL()
-        const blob = await (await fetch(dataUrl)).blob();
+        const blob = await (await fetch(imgDataURL)).blob();
         const file = new File([blob], 'canvas-image.png', { type: 'image/jpeg' });
         try {
             await navigator.share({
