@@ -21,6 +21,7 @@ function addListeners() {
 
 	window.addEventListener('resize', resizeCanvas)
 
+    gElCanvas.addEventListener('mousemove', onHoverOverTitle)
     gElCanvas.addEventListener('mousedown', onSelectLine)
     gElCanvas.addEventListener('mousemove', onDragLine)
     document.addEventListener('mouseup', onPlaceLine)
@@ -216,6 +217,14 @@ function onAlign(alignDir) {
 function onSwitchTitleToEdit() {
 	updateTxtInput(switchTitleToEdit())
 	renderMeme()
+}
+
+function onHoverOverTitle(ev) {
+    const elCanvasContainer = document.querySelector('.canvas-container')
+    let { offsetX: x, offsetY: y } = ev
+
+    if (isHoverTitle({ x, y })) elCanvasContainer.style.cursor = 'pointer'
+    else elCanvasContainer.style.cursor = 'default'
 }
 
 function onSelectLine(ev) {

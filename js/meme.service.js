@@ -76,19 +76,19 @@ function getUserPrefs() {
 	return gPrefs
 }
 
+function isHoverTitle(mousePos) {
+	const { lines } = gMeme
+	const hoveredTitle = lines.find(line => compareMousePosToTitle(mousePos, line))
+
+	// console.log(hoveredTitle)
+
+	return hoveredTitle
+	
+}
+
 function selectLine(mousePos) {
 	const { lines } = gMeme
-	const selectedLineIdx = lines.findIndex(({ txt, linePos, font }) => {
-		const pad = 10
-		const lineWidth = getLineWidth(txt, font)
-
-		return (
-			mousePos.x >= linePos.x - pad &&
-			mousePos.x <= linePos.x - pad + lineWidth + pad * 2 &&
-			mousePos.y <= linePos.y + pad * 2 &&
-			mousePos.y >= linePos.y - font.size
-		)
-	})
+	const selectedLineIdx = lines.findIndex(line => compareMousePosToTitle(mousePos, line))
 
 	gMeme.selectedLineIdx = selectedLineIdx
 
@@ -96,6 +96,18 @@ function selectLine(mousePos) {
 
 	if (selectedLineIdx >= 0) return lines[selectedLineIdx].txt
 	else return null
+}
+
+function compareMousePosToTitle(mousePos, { linePos, txt, font }) {
+	const pad = 10
+	const lineWidth = getLineWidth(txt, font)
+
+	return (
+		mousePos.x >= linePos.x - pad &&
+		mousePos.x <= linePos.x - pad + lineWidth + pad * 2 &&
+		mousePos.y <= linePos.y + pad * 1.5 &&
+		mousePos.y >= linePos.y - font.size - pad / 2
+	)
 }
 
 function dragLine(currPos, prevPos) {
