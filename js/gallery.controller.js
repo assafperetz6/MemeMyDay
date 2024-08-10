@@ -26,9 +26,9 @@ function renderSavedMemes() {
 	const htmlStrs = savedMemes
 		.map(({ memeThumbnail }, idx) => {
 			return `<div class="saved-meme-container">
-                    <span class="btn delete-meme flex justify-center align-center" onclick="onDeleteMeme(${idx})">X</span>
-                    <img src="${memeThumbnail}" alt="" onclick="onRenderSavedMeme(${idx})"></img>
-                </div>`
+						<img src="${memeThumbnail}" alt="" onclick="onRenderSavedMeme(${idx})"></img>
+						<span class="btn delete-meme flex justify-center align-center" onclick="onDeleteMeme(${idx})">X</span>
+                	</div>`
 		})
 		.join('')
 	const elGallery = document.querySelector('.gallery')
@@ -115,6 +115,8 @@ function onUploadFile(el) {
 		url: img.src
 	}
 	gImgs.push(newImgObj)
+	saveToStorage('gImgs', gImgs)
+
 	setImg(newImgObj.id)
 
 	img.onload = renderMeme()
