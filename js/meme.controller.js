@@ -48,7 +48,7 @@ function addListeners() {
         try {
             await navigator.share({
                 title: 'New Meme For you!',
-                text: 'Look What I`ve made using Meme My Day:',
+                text: 'Look What I`ve made using Meme My Day: ',
                 url: gElCanvas.toDataURL()
             })
             showUserMsg('Meme shared succesfully!')
